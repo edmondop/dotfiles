@@ -1,0 +1,3 @@
+
+# GoLang
+eval "$(goenv init -)"

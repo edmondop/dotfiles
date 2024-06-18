@@ -1,0 +1,8 @@
+require("mason").setup()
+require("custom.dev-setup.lsp")
+require("custom.dev-setup.parsers")
+require("custom.dev-setup.productivity")
+require("custom.dev-setup.snippets")
+require("custom.dev-setup.testing")
+require("custom.dev-setup.tools")
+

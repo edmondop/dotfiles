@@ -11,7 +11,7 @@ return {
 	},
 	{
 
-		"christoomey/vim-tmux-navigator",
+		"alexghergh/nvim-tmux-navigation",
 	},
 	{
 		"stevearc/oil.nvim",

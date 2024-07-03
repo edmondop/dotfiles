@@ -32,10 +32,8 @@ config.setup({
 -- Mason
 require("mason").setup()
 
-local ensure_installed = {
-	"goimports",
+local lsp = {
 	"graphql",
-	"hclfmt",
 	"jsonls",
 	"lua_ls",
 	-- "nil_ls", -- This will be conditionally added
@@ -49,20 +47,45 @@ local ensure_installed = {
 	"yamlls",
 }
 
+local tools = {
+	"buf",
+	"goimports",
+	"hclfmt",
+	"stylua",
+}
+
 -- Check if the environment variable is set
 if vim.fn.getenv("ENABLE_NIX") == "1" then
-	table.insert(ensure_installed, "nil_ls")
+	table.insert(lsp, "nil_ls")
 end
 
+local lsp_zero = require("lsp-zero")
+
+lsp_zero.on_attach(function(client, bufnr)
+	-- see :help lsp-zero-keybindings
+	-- to learn the available actions
+	lsp_zero.default_keymaps({ buffer = bufnr })
+end)
+
 require("mason-lspconfig").setup({
-	ensure_installed = ensure_installed,
+	ensure_installed = lsp,
+	handlers = {
+		--- this first function is the "default handler"
+		--- it applies to every language server without a "custom handler"
+		function(server_name)
+			require("lspconfig")[server_name].setup({})
+		end,
+	},
 })
+require("mason-tool-installer").setup({
+	ensure_installed=tools
+})
+
+-- here you can setup the language servers
 local lspconfig = require("lspconfig")
-lspconfig.lua_ls.setup({})
-lspconfig.rust_analyzer.setup({})
-lspconfig.terraformls.setup({})
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+for _, lsp_name in ipairs(lsp) do
+	lspconfig[lsp_name].setup({})
+end
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 
 -- Completions
@@ -107,7 +130,12 @@ vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 
 -- Trouble
 vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
-vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics (Trouble)" })
+vim.keymap.set(
+	"n",
+	"<leader>xX",
+	"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+	{ desc = "Buffer Diagnostics (Trouble)" }
+)
 
 vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
 vim.keymap.set(

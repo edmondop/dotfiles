@@ -32,10 +32,11 @@ vim.o.winminwidth = 10
 vim.o.equalalways = false
 require("windows").setup()
 -- Tmux
-vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<CR>")
-vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown<CR>")
-vim.keymap.set("n", "<C-k>", ":TmuxNavigateUp<CR>")
-vim.keymap.set("n", "<C-l>", ":TmuxNavigateRight<CR>")
+require("nvim-tmux-navigation").setup({})
+vim.keymap.set("n", "<C-h>", "<CMD>NvimTmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<C-j>", "<CMD>NvimTmuxNavigateDown<CR>")
+vim.keymap.set("n", "<C-k>", "<CMD>NvimTmuxNavigateUp<CR>")
+vim.keymap.set("n", "<C-l>", "<CMD>NvimTmuxNavigateRight<CR>")
 
 -- Navigate vim panes better
 vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')

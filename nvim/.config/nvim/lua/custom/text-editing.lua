@@ -18,3 +18,5 @@ require("ufo").setup({
 		return { "lsp", "indent" }
 	end,
 })
+require("neoclip").setup()
+

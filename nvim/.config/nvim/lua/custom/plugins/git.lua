@@ -21,4 +21,12 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 	},
+	{
+		"rbong/vim-flog",
+		lazy = true,
+		cmd = { "Flog", "Flogsplit", "Floggit" },
+		dependencies = {
+			"tpope/vim-fugitive",
+		},
+	},
 }

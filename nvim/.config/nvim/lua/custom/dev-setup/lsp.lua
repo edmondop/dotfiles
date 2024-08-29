@@ -44,20 +44,20 @@ lsp_zero.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>g]", vim.diagnostic.goto_next, { desc = "LSP - Next diagnostic" })
 end)
 
-vim.keymap.set("n", "<leader>Tx", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Trouble - Diagnostics" })
+vim.keymap.set("n", "<leader>TX", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Trouble - Diagnostics" })
 
 vim.keymap.set(
 	"n",
-	"<leader>tdX",
+	"<leader>TB",
 	"<CMD>Trouble diagnostics toggle filter.buf=0<cr>",
 	{ desc = "Buffer Diagnostics (Trouble)" }
 )
 
-vim.keymap.set("n", "<leader>Ts", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
+vim.keymap.set("n", "<leader>TS", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
 
 vim.keymap.set(
 	"n",
-	"<leader>Tl",
+	"<leader>TR",
 	"<CMD>Trouble lsp toggle focus=false win.position=right<cr>",
 	{ desc = "Trouble - LSP Definitions / references / ... (Trouble)" }
 )

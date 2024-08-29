@@ -22,4 +22,5 @@ return {
 		"kylechui/nvim-surround",
 		event = { "BufReadPre", "BufNewFile" },
 	},
+	{ "sindrets/diffview.nvim" },
 }

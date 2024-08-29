@@ -31,8 +31,10 @@ return {
 	{
 		"xiyaowong/transparent.nvim",
 	},
-  "akinsho/bufferline.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  version = "*",
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		version = "*",
+	},
+	{ "echasnovski/mini.icons" },
 }
-

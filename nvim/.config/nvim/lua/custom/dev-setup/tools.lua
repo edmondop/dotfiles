@@ -55,3 +55,5 @@ vim.keymap.set({ "n", "v" }, "<leader>cf", function()
 		timeout_ms = 1000,
 	})
 end, { desc = "Format file or range (in visual mode)" })
+
+require("CopilotChat").setup({ debug = true })

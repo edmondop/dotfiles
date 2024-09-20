@@ -17,7 +17,7 @@
 
   networking.hostName = "edmondo"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
+  programs.ssh.startAgent = true;
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 

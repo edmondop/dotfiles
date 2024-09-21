@@ -20,7 +20,7 @@
   networking.hostName = "edmondo"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   programs.ssh.startAgent = true;
-  boot.loader.systemd-boot.consoleMode = "2";
+  boot.loader.systemd-boot.consoleMode = "1";
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
@@ -88,9 +88,13 @@
 environment.systemPackages = with pkgs; [
     bat
     nodejs
+    pnpm
+    python3
     gcc
     ripgrep
     fzf
+    tmuxifier
+    tmux
     go
     unzip
     neofetch

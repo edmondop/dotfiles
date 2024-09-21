@@ -85,38 +85,44 @@
       enable = true;
   };
 
+ environment.variables.OH_MY_ZSH_PATH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
+
+
 environment.systemPackages = with pkgs; [
     bat
-    nodejs
-    pnpm
-    python3
-    gcc
-    ripgrep
-    fzf
-    tmuxifier
-    tmux
-    go
-    unzip
-    neofetch
-    pyenv
-    pavucontrol
-    starship
-    wl-clipboard
-    nixpkgs-fmt
-    colorls
-    zoxide
-    vim
-    dunst
-    swww
-    networkmanagerapplet
-    libnotify
-    wget
-    kitty
     brave
+    cargo
+    colorls
+    dunst
+    fzf
+    gcc
+    go
     hyprpaper
+    kitty
+    libnotify
+    neofetch
+    networkmanagerapplet
+    nixpkgs-fmt
+    nodejs
+    oh-my-zsh
+    pavucontrol
+    pnpm
+    pyenv
+    python3
+    ripgrep
     rofi-wayland
-    waybar
+    rustup 
+    starship
     stow
+    swww
+    tmux
+    tmuxifier
+    unzip
+    vim
+    waybar
+    wget
+    wl-clipboard
+    zoxide
   ];
 
   nix = {

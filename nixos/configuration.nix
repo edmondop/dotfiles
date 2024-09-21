@@ -13,11 +13,14 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+
+  boot.loader.systemd-boot.configurationLimit = 10;  
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "edmondo"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   programs.ssh.startAgent = true;
+  boot.loader.systemd-boot.consoleMode = "2";
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
@@ -84,6 +87,7 @@
 
 environment.systemPackages = with pkgs; [
     bat
+    nodejs
     gcc
     ripgrep
     fzf

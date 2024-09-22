@@ -13,13 +13,17 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-  stylix = {
-    enable = true;
-    image = ./wallpaper.png;
-    polarity = "dark";
-  };
+  # stylix = {
+  #   enable = true;
+  #   image = builtins.path {
+  #     name = "wallpaper.png";
+  #     path = ./wallpaper.png;
+  #   };
+  #  # image = pkgs.copyPathToStore ./wallpaper.png;
+  #   polarity = "dark";
+  # };
   hardware.bluetooth.enable = true; # 
-  hardware.bluetooth.powerOnBoot = true; 
+  hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
   networking.hostName = "edmondo"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -84,29 +88,29 @@
   ];
   programs.neovim.enable = true;
   programs.thunar.enable = true;
-  
+
   programs.git = {
-      enable = true;
+    enable = true;
   };
 
- environment.variables.OH_MY_ZSH_PATH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
+  environment.variables.OH_MY_ZSH_PATH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
 
 
 
-services.auto-cpufreq.enable = true;
-services.auto-cpufreq.settings = {
-  battery = {
-     governor = "powersave";
-     turbo = "never";
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+      turbo = "never";
+    };
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
   };
-  charger = {
-     governor = "performance";
-     turbo = "auto";
-  };
-};
+  nixpkgs.config.allowUnfree = true;
 
-
-environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     bat
     bitwarden-desktop
     bitwarden-cli
@@ -116,6 +120,7 @@ environment.systemPackages = with pkgs; [
     cargo
     colorls
     dunst
+    element-desktop
     fzf
     gcc
     go
@@ -133,7 +138,7 @@ environment.systemPackages = with pkgs; [
     python3
     ripgrep
     rofi-wayland
-    rustup 
+    rustup
     starship
     stow
     swww

@@ -13,16 +13,20 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-
-  boot.loader.systemd-boot.configurationLimit = 10;  
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  stylix = {
+    enable = true;
+    image = ./wallpaper.png;
+    polarity = "dark";
+  };
+  hardware.bluetooth.enable = true; # 
+  hardware.bluetooth.powerOnBoot = true; 
+  services.blueman.enable = true;
   networking.hostName = "edmondo"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   programs.ssh.startAgent = true;
   boot.loader.systemd-boot.consoleMode = "1";
   # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/New_York";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -88,8 +92,26 @@
  environment.variables.OH_MY_ZSH_PATH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
 
 
+
+services.auto-cpufreq.enable = true;
+services.auto-cpufreq.settings = {
+  battery = {
+     governor = "powersave";
+     turbo = "never";
+  };
+  charger = {
+     governor = "performance";
+     turbo = "auto";
+  };
+};
+
+
 environment.systemPackages = with pkgs; [
     bat
+    bitwarden-desktop
+    bitwarden-cli
+    bitwarden-menu
+    bluetuith
     brave
     cargo
     colorls
@@ -149,6 +171,7 @@ environment.systemPackages = with pkgs; [
   programs.waybar.enable = true;
   services.xserver = {
     enable = true;
+
   };
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.enable = true;

@@ -3,14 +3,15 @@
 
  inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, stylix, ... }@inputs: {
 
 
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [./configuration.nix] ;
+      modules = [stylix.nixosModules.stylix ./configuration.nix] ;
     };
 
   };

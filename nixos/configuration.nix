@@ -13,15 +13,11 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-  # stylix = {
-  #   enable = true;
-  #   image = builtins.path {
-  #     name = "wallpaper.png";
-  #     path = ./wallpaper.png;
-  #   };
-  #  # image = pkgs.copyPathToStore ./wallpaper.png;
-  #   polarity = "dark";
-  # };
+  stylix = {
+    enable = true;
+    image = ./wallpaper.png;
+    polarity = "dark";
+  };
   hardware.bluetooth.enable = true; # 
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
@@ -124,6 +120,7 @@
     fzf
     gcc
     go
+    google-chrome
     hyprpaper
     kitty
     libnotify
@@ -131,6 +128,7 @@
     networkmanagerapplet
     nixpkgs-fmt
     nodejs
+    obsidian
     oh-my-zsh
     pavucontrol
     pnpm
@@ -139,6 +137,7 @@
     ripgrep
     rofi-wayland
     rustup
+    slack
     starship
     stow
     swww

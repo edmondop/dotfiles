@@ -4,7 +4,10 @@
  inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     stylix.url = "github:danth/stylix";
-    mach-nix.url = "github:DavHau/mach-nix/3.3.0";
+    pyprland = {
+      url = "github:hyprland-community/pyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, stylix, ... }@inputs: {
@@ -15,8 +18,8 @@
       modules = [
         stylix.nixosModules.stylix
         ./configuration.nix
-        ./pyprland.nix
       ];
+      specialArgs = { inherit inputs; };
     };
 
   };

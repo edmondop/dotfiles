@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware-configuration.nix  
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -147,6 +147,7 @@
     vim
     waybar
     wget
+    whatsapp-for-linux
     wl-clipboard
     zoxide
   ];
@@ -175,10 +176,15 @@
   programs.waybar.enable = true;
   services.xserver = {
     enable = true;
-
+    xkb = {
+      layout = "us";
+      options = "";
+    };
   };
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    wayland.enable = true;
+    enable = true;
+  };
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";

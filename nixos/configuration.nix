@@ -10,19 +10,25 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+
+  
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+      framework-laptop-kmod
+    ];
+  boot.kernelModules = [ "cros_ec" "cros_ec_lpcs" ];
   stylix = {
     enable = true;
     image = ./wallpaper.png;
-    polarity = "dark";
+    cursor.size = 48;
   };
+  # Set your time zone.
   hardware.bluetooth.enable = true; # 
   hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
   networking.hostName = "edmondo"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   programs.ssh.startAgent = true;
-  boot.loader.systemd-boot.consoleMode = "1";
-  # Set your time zone.
+
+  services.blueman.enable = true;
   time.timeZone = "America/New_York";
 
   # Configure network proxy if necessary
@@ -55,9 +61,12 @@
       value = "64000";
     }
   ];
+
+  boot.kernelParams = [ "acpi_backlight=vendor" ];
+
   users.users.edmondo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     initialPassword = "pw123";
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -102,7 +111,8 @@
     };
   };
   nixpkgs.config.allowUnfree = true;
-
+  services.acpid.enable = true;
+  programs.light.enable = true;
   environment.systemPackages = with pkgs; [
     bat
     bitwarden-desktop
@@ -110,12 +120,15 @@
     bitwarden-menu
     bluetuith
     brave
+    brightnessctl
     cargo
     colorls
     dunst
     element-desktop
     fzf
     gcc
+    graphite-gtk-theme
+    gruvbox-gtk-theme
     go
     google-chrome
     hyprpaper
@@ -125,6 +138,7 @@
     networkmanagerapplet
     nixpkgs-fmt
     nodejs
+    nwg-look
     obsidian
     oh-my-zsh
     pavucontrol
@@ -165,6 +179,7 @@
   #   enableSSHSupport = true;
   # };
   programs.zsh.enable = true;
+  programs.noisetorch.enable = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -186,7 +201,6 @@
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,

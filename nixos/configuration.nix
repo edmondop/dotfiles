@@ -19,7 +19,6 @@
   stylix = {
     enable = true;
     image = ./wallpaper.png;
-    cursor.size = 48;
   };
   # Set your time zone.
   hardware.bluetooth.enable = true; # 
@@ -201,6 +200,8 @@
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
+    HYPRLAND_TRACE="1";
+    NIXOS_OZONE_WL = "1";
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,

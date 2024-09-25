@@ -22,10 +22,6 @@
       framework-laptop-kmod
     ];
   boot.kernelModules = [ "cros_ec" "cros_ec_lpcs" ];
-  stylix = {
-    enable = true;
-    image = ./wallpaper.png;
-  };
   # Set your time zone.
   hardware.bluetooth.enable = true; # 
   hardware.bluetooth.powerOnBoot = true;

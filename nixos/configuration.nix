@@ -10,8 +10,14 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-
   
+  boot.loader.systemd-boot.extraEntries = {
+    "mint.conf" = ''
+      title Linux Mint
+      efi /efi/ubuntu/shimx64.efi
+      sort-key mint
+    '';
+  };
   boot.extraModulePackages = with config.boot.kernelPackages; [
       framework-laptop-kmod
     ];

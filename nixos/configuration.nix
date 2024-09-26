@@ -124,6 +124,7 @@
     brightnessctl
     cargo
     colorls
+    dconf
     dunst
     element-desktop
     fzf

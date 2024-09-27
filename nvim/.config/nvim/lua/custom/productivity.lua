@@ -85,5 +85,8 @@ wk.register({
 		w = {
 			name = "Windows/Sessions",
 		},
+		z = {
+			name = "Zenmode/Twlight",
+		},
 	},
 })

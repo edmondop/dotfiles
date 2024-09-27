@@ -23,4 +23,10 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 	},
 	{ "sindrets/diffview.nvim" },
+	{
+		"folke/zen-mode.nvim",
+	},
+	{
+		"folke/twilight.nvim",
+	},
 }

@@ -41,3 +41,9 @@ vim.keymap.set("x", "<leader>s", substitute_range.visual, { desc = "Substitute r
 vim.keymap.set("n", "<leader>ss", substitute_range.word, { desc = "Substitute range in current word" })
 
 require("nvim-surround").setup({})
+
+require("zen-mode").setup({})
+require("twilight").setup({})
+
+vim.keymap.set("n", "<leader>zz", "<CMD>Zenmode<CR>", { desc = "Zenmode" })
+vim.keymap.set("n", "<leader>zT", "<CMD>Twilight<CR>", { desc = "Twilight" })

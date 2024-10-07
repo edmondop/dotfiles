@@ -1,5 +1,7 @@
 local lsps = {
+	"bashls",
 	"graphql",
+	"jdtls",
 	"jsonls",
 	"lua_ls",
 	-- "nil_ls", -- This will be conditionally added
@@ -9,7 +11,7 @@ local lsps = {
 	"sqlls",
 	"terraformls",
 	"tflint",
-	"tsserver",
+	"ts_ls",
 	"yamlls",
 }
 
@@ -73,6 +75,8 @@ capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
 	lineFoldingOnly = true,
 }
+
+require("java").setup()
 
 require("mason-lspconfig").setup({
 	ensure_installed = lsps,

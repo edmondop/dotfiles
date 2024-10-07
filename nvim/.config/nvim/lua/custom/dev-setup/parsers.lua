@@ -3,6 +3,7 @@ config.setup({
 	ensure_installed = {
 		"bash",
 		"css",
+		"diff",
 		"gitignore",
 		"gitattributes",
 		"go",

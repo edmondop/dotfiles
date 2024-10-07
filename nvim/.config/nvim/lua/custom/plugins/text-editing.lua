@@ -29,4 +29,7 @@ return {
 	{
 		"folke/twilight.nvim",
 	},
+	{
+		"reedes/vim-pencil",
+	},
 }

@@ -47,3 +47,10 @@ require("twilight").setup({})
 
 vim.keymap.set("n", "<leader>zz", "<CMD>Zenmode<CR>", { desc = "Zenmode" })
 vim.keymap.set("n", "<leader>zT", "<CMD>Twilight<CR>", { desc = "Twilight" })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "tex", "text" },
+	callback = function()
+		vim.fn["pencil#init"]()
+	end,
+})

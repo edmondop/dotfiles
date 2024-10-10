@@ -14,7 +14,7 @@ done
 
 # Ask Y/n
 function ask() {
-	read -p "$1 (Y/n): " resp
+	read -r -p "$1 (Y/n): " resp
 	if [ -z "$resp" ]; then
 		response_lc="y" # empty is Yes
 	else
@@ -30,10 +30,9 @@ if [ -f "$ZSHRC" ]; then
 	SH="$ZSHRC"
 fi
 
-
-IMPORT_FILE=".zshrc_imports" 
+IMPORT_FILE=".zshrc_imports"
 # Ask which files should be sourced
-cat /dev/null > $IMPORT_FILE
+cat /dev/null >$IMPORT_FILE
 
 for file in zsh/shell/*; do
 	if [ -f "$file" ]; then
@@ -45,8 +44,7 @@ for file in zsh/shell/*; do
 done
 
 if ! grep -Fxq "source $(realpath "$IMPORT_FILE")" "$SH"; then
-	echo >>$SH
-	echo '# -------------- dotfiles install ---------------' >>$SH
+	echo >>"$SH"
+	echo '# -------------- dotfiles install ---------------' >>"$SH"
 	echo "source $(realpath "$IMPORT_FILE")" >>"$SH"
 fi
-

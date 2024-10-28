@@ -34,7 +34,14 @@ lsp_zero.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>gs", vim.lsp.buf.signature_help, { desc = "LSP - Signature help" })
 
 	-- here you can setup the language servers
-	vim.keymap.set({ "n", "v" }, "<leader>gca", vim.lsp.buf.code_action, { desc = "LSP - Code Action" })
+	-- Set up a cross-platform keybinding for code actions
+	vim.keymap.set("n", "<C-.>", vim.lsp.buf.code_action, { desc = "LSP - Code Action" })
+	vim.keymap.set(
+		"v",
+		"<C-.>",
+		vim.lsp.buf.range_code_action or vim.lsp.buf.code_action,
+		{ desc = "LSP - Range Code Action" }
+	)
 	vim.keymap.set("n", "<space>grn", vim.lsp.buf.rename, { desc = "LSP Rename Symbol" })
 	if vim.lsp.buf.range_code_action then
 		vim.keymap.set("x", "<leader>grca", vim.lsp.buf.range_code_action, { desc = "LSP - Range Code Action" })

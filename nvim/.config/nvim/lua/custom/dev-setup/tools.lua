@@ -5,6 +5,7 @@ local tools = {
 	{ name = "prettier", capabilities = { "formatting" } },
 	{ name = "buf", capabilities = { "formatting", "diagnostics" } },
 	{ name = "goimports", capabilities = { "formatting" } },
+	{ name = "actionlint", capabilities = { "diagnostics" } },
 }
 
 require("mason-tool-installer").setup({
@@ -56,4 +57,4 @@ vim.keymap.set({ "n", "v" }, "<leader>cf", function()
 	})
 end, { desc = "Format file or range (in visual mode)" })
 
-require("CopilotChat").setup({ debug = true })
+require("CopilotChat").setup({})

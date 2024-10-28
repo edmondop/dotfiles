@@ -32,4 +32,5 @@ return {
 	{
 		"reedes/vim-pencil",
 	},
+	{ "echasnovski/mini.cursorword", version = "*" },
 }

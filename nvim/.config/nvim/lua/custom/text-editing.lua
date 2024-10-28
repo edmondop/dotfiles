@@ -54,3 +54,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.fn["pencil#init"]()
 	end,
 })
+
+require("mini.cursorword").setup()

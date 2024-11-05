@@ -1,9 +1,18 @@
-local null_ls = require("null-ls")
-local actions = null_ls.builtins.code_actions
+local null_ls_status, null_ls = pcall(require, "null-ls")
+if not null_ls_status then
+    print("Error: null-ls module not found")
+    return
+end
+
+local actions_status, actions = pcall(function() return null_ls.builtins.code_actions end)
+if not actions_status then
+    print("Error: code_actions not found in null-ls.builtins")
+    return
+end
 
 for name, builtin in pairs(null_ls.builtins) do
-	print(name, vim.inspect(builtin))
+    print(name, vim.inspect(builtin))
 end
 for name, action in pairs(actions) do
-	print(name, vim.inspect(action))
+    print(name, vim.inspect(action))
 end

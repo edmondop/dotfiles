@@ -10,13 +10,14 @@ return {
 			{ "nvim-lua/plenary.nvim" },
 		},
 	},
-	{
-		"Exafunction/codeium.vim",
-		event = "BufEnter",
-	},
+	-- {
+	-- 	"Exafunction/codeium.vim",
+	-- 	event = "BufEnter",
+	-- },
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		lazy = false,
+		build = "make",
 	},
 }

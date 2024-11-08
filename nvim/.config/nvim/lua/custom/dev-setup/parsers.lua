@@ -4,7 +4,7 @@ config.setup({
 		"bash",
 		"css",
 		"diff",
-		"gitignore",
+		-- "gitignore",
 		"gitattributes",
 		"go",
 		"gomod",

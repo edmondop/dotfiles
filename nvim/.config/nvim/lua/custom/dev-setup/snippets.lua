@@ -24,6 +24,6 @@ cmp.setup({
 		{ name = "luasnip" }, -- For luasnip users.
 	}, {
 		{ name = "buffer" },
-		{ name = "codeium" },
+		-- { name = "codeium" },
 	}),
 })

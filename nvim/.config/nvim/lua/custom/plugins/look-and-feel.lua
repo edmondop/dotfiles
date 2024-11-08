@@ -37,4 +37,7 @@ return {
 		version = "*",
 	},
 	{ "echasnovski/mini.icons" },
+	{
+		"stevearc/dressing.nvim",
+	},
 }

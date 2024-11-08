@@ -82,3 +82,5 @@ require("lualine").setup({
 
 local notify = require("notify")
 vim.keymap.set("n", "<ESC>", notify.dismiss, { desc = "Dismiss notifications" })
+
+require("dressing").setup({})

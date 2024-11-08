@@ -1,4 +1,5 @@
 require("mason").setup()
+require("custom.dev-setup.ai")
 require("custom.dev-setup.debugging")
 require("custom.dev-setup.lsp")
 require("custom.dev-setup.parsers")

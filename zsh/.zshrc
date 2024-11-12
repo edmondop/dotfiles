@@ -21,4 +21,4 @@ neofetch
 
 # -------------- dotfiles install ---------------
 source /home/edmondo/dotfiles/.zshrc_imports
-alias docker=podman
+source <(kubectl completion zsh)

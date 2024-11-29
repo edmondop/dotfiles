@@ -1,6 +1,7 @@
 local lsps = {
 	"bashls",
 	"graphql",
+	"gopls",
 	"jdtls",
 	"jsonls",
 	"lua_ls",

@@ -24,30 +24,29 @@ end
 local lsp_zero = require("lsp-zero")
 
 lsp_zero.on_attach(function(client, bufnr)
+	-- Code actions
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code Action" })
+	vim.keymap.set("v", "<leader>ca", function()
+		if vim.lsp.buf.range_code_action then
+			vim.lsp.buf.range_code_action()
+		else
+			vim.lsp.buf.code_action()
+		end
+	end, { desc = "LSP - Range Code Action" })
+	-- Productivity
+	vim.keymap.set("n", "<leader>cs", vim.lsp.buf.signature_help, { desc = "LSP - Signature help" })
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP - Hover documentation" })
+	-- Navigation
 	vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "LSP - Go to definition" })
 	vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { desc = "LSP - Go to declaration" })
-	vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "LSP - Format file" })
-	vim.keymap.set("x", "<leader>cf", vim.lsp.buf.format, { desc = "LSP - Format selection" })
 	vim.keymap.set("n", "<leader>ci", vim.lsp.buf.implementation, { desc = "LSP - Go to implementation" })
 	vim.keymap.set("n", "<leader>ct", vim.lsp.buf.type_definition, { desc = "LSP - Go to type definition" })
 	vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "LSP - Go to reference" })
-	vim.keymap.set("n", "<leader>cs", vim.lsp.buf.signature_help, { desc = "LSP - Signature help" })
-
-	-- here you can setup the language servers
-	-- Set up a cross-platform keybinding for code actions
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code Action" })
-	vim.keymap.set(
-		"v",
-		"<leader>ca",
-		vim.lsp.buf.range_code_action or vim.lsp.buf.code_action,
-		{ desc = "LSP - Range Code Action" }
-	)
-	vim.keymap.set("n", "<space>grn", vim.lsp.buf.rename, { desc = "LSP Rename Symbol" })
-	if vim.lsp.buf.range_code_action then
-		vim.keymap.set("x", "<leader>crca", vim.lsp.buf.range_code_action, { desc = "LSP - Range Code Action" })
-	end
-
+	-- Formatting
+	vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "LSP - Format file" })
+	vim.keymap.set("x", "<leader>cf", vim.lsp.buf.format, { desc = "LSP - Format selection" })
+	vim.keymap.set("n", "<space>cn", vim.lsp.buf.rename, { desc = "LSP Rename Symbol" })
+	-- Troubles
 	vim.keymap.set("n", "<leader>D", "<CMD>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
 	vim.keymap.set("n", "<leader>cl", vim.diagnostic.open_float, { desc = "LSP - Show diagnostic" })
 	vim.keymap.set("n", "<leader>c[", vim.diagnostic.goto_prev, { desc = "LSP - Previous diagnostic" })

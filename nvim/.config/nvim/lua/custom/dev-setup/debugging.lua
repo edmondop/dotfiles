@@ -21,21 +21,21 @@ vim.keymap.set("n", "<F12>", function()
 end, { desc = "Step out" })
 
 -- Breakpoints
-vim.keymap.set("n", "<leader>b", function()
+vim.keymap.set("n", "<leader>db", function()
 	dap.toggle_breakpoint()
 end, { desc = "DAP - Toggle breakpoint" })
 
-vim.keymap.set("n", "<leader>B", function()
+vim.keymap.set("n", "<leader>dB", function()
 	dap.set_breakpoint()
 end, { desc = "DAP - Set breakpoint" })
 
 -- Logging / non blocking breakpoint
-vim.keymap.set("n", "<Leader>lp", function()
+vim.keymap.set("n", "<Leader>dlp", function()
 	dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end, { desc = "DAP - Log point" })
 
 -- Run to cursor
-vim.keymap.set("n", "<leader>rc", function()
+vim.keymap.set("n", "<leader>dc", function()
 	dap.run_to_cursor()
 end, { desc = "DAP - Run to cursor" })
 
@@ -44,7 +44,7 @@ vim.keymap.set("n", "<leader>dr", function()
 	dap.repl.open()
 end, { desc = "DAP - Open debugger REPL" })
 
-vim.keymap.set("n", "<leader>dl", function()
+vim.keymap.set("n", "<leader>dL", function()
 	dap.run_last()
 end, { desc = "DAP - Run last" })
 

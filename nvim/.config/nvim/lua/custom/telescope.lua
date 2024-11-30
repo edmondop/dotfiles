@@ -2,7 +2,12 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+vim.keymap.set(
+	"n",
+	"<leader>fg",
+	":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+	{ desc = "Find - Live Grep" }
+)
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help Tags" })
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Find Old Files" })

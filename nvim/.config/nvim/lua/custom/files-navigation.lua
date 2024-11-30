@@ -32,6 +32,7 @@ require("neo-tree").setup({
 			hide_gitignored = false,
 			always_show = {
 				".gitignored",
+        ".config",
 			},
 		},
 		follow_current_file = {

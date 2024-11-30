@@ -19,6 +19,10 @@ vim.keymap.set("n", "<leader>we", "<C-w>=", { desc = "Make splits equal size" })
 vim.keymap.set("n", "<leader>wx", "<CMD>close<CR>", { desc = "Close current split" }) -- close current split window
 vim.keymap.set("n", "<leader>wm", "<CMD>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
 
+vim.keymap.set("n", "<C-S-Down>", ":resize +2<CR>", { desc = "Resize Horizontal Split Down" })
+vim.keymap.set("n", "<C-S-Up>", ":resize -2<CR>", { desc = "Resize Horizontal Split Up" })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Resize Vertical Split Down" })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Resize Vertical Split Up" })
 -- Tmux
 require("nvim-tmux-navigation").setup({})
 vim.keymap.set("n", "<C-h>", "<CMD>NvimTmuxNavigateLeft<CR>")
@@ -58,8 +62,14 @@ local wk = require("which-key")
 wk.setup({})
 wk.register({
 	["<leader>"] = {
+		a = {
+			name = "Avante",
+		},
 		c = {
 			name = "Code",
+		},
+		d = {
+			name = "Debug",
 		},
 		f = {
 			name = "Find",

@@ -23,12 +23,26 @@ dashboard.section.header.val = {
 
 alpha.setup(dashboard.opts)
 -- Catppuccin
-vim.cmd.colorscheme("catppuccin-mocha")
-vim.cmd([[
-		  highlight LineNr guifg=#F2F3F4
-		  highlight CursorLineNr guifg=#FFFFFF
-		]])
-
+require("catppuccin").setup({
+	flavour = "mocha",
+	color_overrides = {
+		mocha = {
+			base = "#13131c",
+			mantle = "#000000",
+			crust = "#000000",
+		},
+	},
+	integrations = {
+		telescope = {
+			enabled = true,
+		},
+		dropbar = {
+			enabled = true,
+			color_mode = true,
+		},
+	},
+})
+vim.cmd.colorscheme("catppuccin")
 require("noice").setup({
 	lsp = {
 		override = {

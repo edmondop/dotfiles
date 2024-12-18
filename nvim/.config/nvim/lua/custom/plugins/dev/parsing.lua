@@ -10,4 +10,9 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
+	{
+		"davidmh/mdx.nvim",
+		config = true,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
 }

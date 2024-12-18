@@ -15,6 +15,20 @@ vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find Word under
 vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
 local lga_actions = require("telescope-live-grep-args.actions")
 telescope.setup({
+	defaults = {
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--hidden",
+			"--glob",
+			"!.git/*",
+		},
+	},
 	extensions = {
 		["ui-select"] = {
 			require("telescope.themes").get_dropdown({}),

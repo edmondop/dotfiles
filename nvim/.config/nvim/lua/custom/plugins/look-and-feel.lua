@@ -14,6 +14,9 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
+		"echasnovski/mini.statusline",
+	},
+	{
 		"anuvyklack/windows.nvim",
 		dependencies = {
 			"anuvyklack/middleclass",

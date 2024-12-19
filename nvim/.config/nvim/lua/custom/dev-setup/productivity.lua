@@ -23,3 +23,7 @@ require("aerial").setup({
 	end,
 })
 vim.keymap.set("n", "<leader>A", "<CMD>AerialToggle!<CR>")
+-- Lua re-evaluation in memory
+vim.keymap.set("n", "<leader><leader>x", "<CMD> source % <CR>")
+vim.keymap.set("n", "<leader>x", "<CMD>: .lua<CR>")
+vim.keymap.set("v", "<leader>x", "<CMD>: lua<CR>")

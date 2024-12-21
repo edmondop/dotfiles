@@ -50,13 +50,13 @@ end, { desc = "DAP - Run last" })
 
 -- widgets
 
-vim.keymap.set("n", "<Leader>df", function()
+vim.keymap.set("n", "<Leader>dwf", function()
 	widgets.centered_float(widgets.frames)
-end, { desc = "DAP - Frames" })
+end, { desc = "DAP - Show Frames" })
 
-vim.keymap.set("n", "<Leader>ds", function()
+vim.keymap.set("n", "<Leader>dws", function()
 	widgets.centered_float(widgets.scopes)
-end, { desc = "DAP - Frames" })
+end, { desc = "DAP - Show Scopes" })
 
 -- python
 vim.keymap.set("n", "<Leader>dn", function()
@@ -82,3 +82,32 @@ end
 vim.api.nvim_create_user_command("DapToggle", function()
 	dapui.toggle()
 end, {})
+
+dap.adapters.codelldb = {
+	type = "server",
+	port = "${port}",
+	executable = {
+		-- Change this to your path!
+		command = "/home/edmondo/.local/share/codelldb/extension/adapter/codelldb",
+		args = { "--port", "${port}" },
+	},
+}
+
+dap.configurations.rust = {
+	{
+		name = "Launch file",
+		type = "codelldb",
+		request = "launch",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+		stopOnEntry = false,
+	},
+}
+dapui.setup()
+
+vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "🟠", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "⚪", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapLogPoint", { text = "🔵", texthl = "", linehl = "", numhl = "" })

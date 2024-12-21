@@ -1,4 +1,13 @@
 return {
+	-- {
+	-- 	"saghen/blink.cmp",
+	-- 	-- optional: provides snippets for the snippet source
+	-- 	dependencies = "rafamadriz/friendly-snippets",
+	-- },
+	-- {
+	--
+	-- 	"giuxtaposition/blink-cmp-copilot",
+	-- },
 	{
 		"hrsh7th/cmp-nvim-lsp",
 	},

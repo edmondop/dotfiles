@@ -1,4 +1,3 @@
--- Completions
 local cmp = require("cmp")
 require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -9,8 +8,12 @@ cmp.setup({
 		end,
 	},
 	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
+		completion = {
+			border = "rounded",
+			col_offset = 0,
+			side_padding = 1,
+		},
+		documentation = { border = "rounded", max_width = 50, max_height = 30 },
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),

@@ -13,6 +13,11 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help Tags" }
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Find Old Files" })
 vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find Word under Cursor" })
 vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
+vim.keymap.set("n", "<leader>en", function()
+	builtin.find_files({
+		cwd = vim.fn.stdpath("config"),
+	})
+end)
 local lga_actions = require("telescope-live-grep-args.actions")
 telescope.setup({
 	defaults = {
@@ -34,6 +39,7 @@ telescope.setup({
 			require("telescope.themes").get_dropdown({}),
 		},
 		undo = {},
+		fzf = {},
 		live_grep_args = {
 			auto_quoting = true,
 			["<C-k>"] = lga_actions.quote_prompt(),
@@ -44,11 +50,12 @@ telescope.setup({
 	},
 })
 
+telescope.load_extension("fzf")
+telescope.load_extension("harpoon")
 telescope.load_extension("live_grep_args")
+telescope.load_extension("noice")
 telescope.load_extension("ui-select")
 telescope.load_extension("undo")
-telescope.load_extension("noice")
-telescope.load_extension("harpoon")
 -- Telescope extensions
 vim.keymap.set("n", "<leader>u", "<CMD>Telescope undo<cr>")
 vim.keymap.set("n", "<leader>r", "<CMD>Telescope neoclip star<cr>")

@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 # Set GoEnv root directory
 export GOENV_ROOT="$HOME/.goenv"
 

@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 # Add this to your .bashrc or .zshrc
 
 copy() {

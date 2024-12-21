@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 # export PATH="$HOME/.nodenv/bin:$PATH"
 # eval "$(nodenv init -)"
 # fnm

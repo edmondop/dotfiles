@@ -16,12 +16,10 @@ source $ZSH/oh-my-zsh.sh
 alias ls=colorls
 alias vim=nvim
 export EDITOR=nvim
-$HOME/.cargo/env
 neofetch
 
 # -------------- dotfiles install ---------------
 source /home/edmondo/dotfiles/.zshrc_imports
-source <(kubectl completion zsh)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/edmondo/.sdkman"

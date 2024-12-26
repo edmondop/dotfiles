@@ -1,3 +1,4 @@
 #!/bin/bash
 
-# source <(kubectl completion zsh)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+source <(kubectl completion zsh)

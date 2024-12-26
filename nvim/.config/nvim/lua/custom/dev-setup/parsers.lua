@@ -23,6 +23,7 @@ config.setup({
 		"regex",
 		"rust",
 		"scala",
+		"sql",
 		"terraform",
 		"tmux",
 		"typescript",

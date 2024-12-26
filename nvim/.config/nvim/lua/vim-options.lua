@@ -11,4 +11,4 @@ set.clipboard:append("unnamedplus")
 
 -- Always split in certain directions
 set.splitright = true
-set.splitbelow = true
+-- set.splitbelow = true

@@ -50,7 +50,7 @@ end
 
 local M = {}
 
----@class GitSetup
+---@class Git
 M.setup = function()
 	require("gitsigns").setup({
 		on_attach = function(bufnr)

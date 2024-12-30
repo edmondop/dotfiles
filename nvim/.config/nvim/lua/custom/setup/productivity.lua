@@ -61,11 +61,12 @@ local setup_which_key = function()
 		{ "<leader>a", group = "Avante" },
 		{ "<leader>c", group = "Code" },
 		{ "<leader>d", group = "Debug" },
+		{ "<leader>e", group = "Edit config/plugins" },
 		{ "<leader>f", group = "Find" },
 		{ "<leader>G", group = "Git" },
 		{ "<leader>h", group = "Harpoon" },
-		{ "<leader>n", group = "Navigation (files)" },
-		{ "<leader>S", group = "Substitute (ranges)" },
+		{ "<leader>s", group = "Swap" },
+		{ "<leader>S", group = "Substitute" },
 		{ "<leader>t", group = "Tabs" },
 		{ "<leader>T", group = "Tests/Troubles" },
 		{ "<leader>w", group = "Windows/Sessions" },
@@ -76,6 +77,12 @@ end
 local setup_enhanced_terminal = function()
 	-- TODO: add reusable terminal from TjDevries
 	vim.opt.termguicolors = true
+end
+
+local setup_lua_live_evaluation = function()
+	vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
+	vim.keymap.set("n", "<leader>x", ":.lua<CR>")
+	vim.keymap.set("v", "<leader>x", ":lua<CR>")
 end
 
 --- @class Productivity
@@ -89,6 +96,7 @@ M.setup = function(opts)
 	setup_auto_session()
 	setup_enhanced_terminal()
 	setup_harpoon()
+	setup_lua_live_evaluation()
 	setup_navigation_keymaps()
 	setup_resize_keymaps()
 	setup_split_keymaps()

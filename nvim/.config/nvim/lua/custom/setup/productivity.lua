@@ -69,6 +69,7 @@ local setup_which_key = function()
 		{ "<leader>S", group = "Substitute" },
 		{ "<leader>t", group = "Tabs" },
 		{ "<leader>T", group = "Tests/Troubles" },
+		{ "<leader>y", group = "Yanking" },
 		{ "<leader>w", group = "Windows/Sessions" },
 		{ "<leader>z", group = "Zenmode/Twlight" },
 	})

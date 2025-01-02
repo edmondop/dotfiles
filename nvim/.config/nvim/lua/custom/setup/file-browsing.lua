@@ -54,10 +54,37 @@ local setup_neotree = function()
 	vim.keymap.set("n", "<C-n>", "<CMD>Neotree toggle<CR>")
 	vim.keymap.set("n", "<leader>nf", "<CMD>Neotree focus<CR>")
 end
+
+local setup_filepath_yanking = function()
+	local function yank_path()
+		if vim.bo.filetype == "oil" then
+			require("oil.actions").copy_entry_path.callback()
+			-- Copy the entry path to the system clipboard
+			vim.fn.setreg("+", vim.fn.getreg(vim.v.register))
+			vim.notify("Copied Oil path to system clipboard", vim.log.levels.INFO)
+		else
+			-- Yank the full file path for regular buffers
+			local path = vim.fn.expand("%:p") -- Full path
+			vim.fn.setreg("+", path) -- Copy to system clipboard
+			vim.notify("Yanked full path: " .. path, vim.log.levels.INFO)
+		end
+	end
+
+	vim.keymap.set("n", "<leader>yp", yank_path, { desc = "Yank Path" })
+
+	-- User command for YankPath
+	vim.api.nvim_create_user_command("YankPath", function()
+		yank_path()
+	end, {
+		desc = "Yank the file path or Oil entry path",
+	})
+end
+setup_filepath_yanking()
 --- @class FileBrowsing
 local M = {}
 M.setup = function(opts)
 	setup_oil()
 	setup_neotree()
+	setup_filepath_yanking()
 end
 return M

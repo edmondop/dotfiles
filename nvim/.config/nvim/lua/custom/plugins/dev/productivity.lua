@@ -46,4 +46,7 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		main = "ibl",
 	},
+	{
+		"ribelo/taskwarrior.nvim",
+	},
 }

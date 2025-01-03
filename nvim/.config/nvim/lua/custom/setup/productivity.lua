@@ -86,6 +86,16 @@ local setup_lua_live_evaluation = function()
 	vim.keymap.set("v", "<leader>x", ":lua<CR>")
 end
 
+local setup_task_warrior = function()
+	local taskwarrior = require("taskwarrior_nvim")
+	taskwarrior.setup({})
+	vim.api.nvim_create_user_command("TaskWarriorList", function()
+		taskwarrior.browser({ "ready" })
+	end, {})
+	-- Map the function to a keybinding
+	vim.api.nvim_set_keymap("n", "<leader>tw", "TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
+end
+
 --- @class Productivity
 local M = {}
 M.setup = function(opts)
@@ -102,6 +112,7 @@ M.setup = function(opts)
 	setup_resize_keymaps()
 	setup_split_keymaps()
 	setup_tabs_keymaps()
+	setup_task_warrior()
 	setup_which_key()
 end
 return M

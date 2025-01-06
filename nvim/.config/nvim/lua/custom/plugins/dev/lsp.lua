@@ -19,4 +19,7 @@ return {
 	{
 		"nvimtools/none-ls.nvim",
 	},
+	{
+		"onsails/lspkind.nvim",
+	},
 }

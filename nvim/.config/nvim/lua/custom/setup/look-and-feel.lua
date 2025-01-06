@@ -74,6 +74,9 @@ end
 local setup_notifications = function()
 	local notify = require("notify")
 	vim.keymap.set("n", "<ESC>", notify.dismiss, { desc = "Dismiss notifications" })
+	notify.setup({
+		log_level = vim.log.levels.DEBUG,
+	})
 end
 
 --- @class LookAndFeel

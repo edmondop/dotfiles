@@ -15,11 +15,12 @@ local setup_hunks_staging_keymaps = function(bufnr)
 	map(bufnr, "v", "<leader>Gr", function()
 		gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 	end, { desc = "Reset Hunk" })
-	map(bufnr, "n", "<leader>GS", gitsigns.stage_buffer, { desc = "Stage Buffer" })
-	map(bufnr, "n", "<leader>Gu", gitsigns.undo_stage_hunk, { desc = "Undo Stage Hunk" })
-	map(bufnr, "n", "<leader>GR", gitsigns.reset_buffer, { desc = "Reset Buffer" })
 	map(bufnr, "n", "<leader>Gp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
 	map(bufnr, { "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+	map(bufnr, "n", "<leader>Gu", gitsigns.undo_stage_hunk, { desc = "Undo Stage Hunk" })
+	-- Buffers
+	map(bufnr, "n", "<leader>GS", gitsigns.stage_buffer, { desc = "Stage Buffer" })
+	map(bufnr, "n", "<leader>GR", gitsigns.reset_buffer, { desc = "Reset Buffer" })
 end
 
 local setup_hunks_navigation_keymaps = function(bufnr)
@@ -48,8 +49,12 @@ local setup_diff_keymaps = function(bufnr)
 	map(bufnr, "n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
 end
 
-local M = {}
+local setup_neogit = function()
+	local neogit = require("neogit")
+	neogit.setup({})
+end
 
+local M = {}
 ---@class Git
 M.setup = function()
 	require("gitsigns").setup({
@@ -66,6 +71,7 @@ M.setup = function()
 		end,
 	})
 	vim.keymap.set("n", "<leader>Gl", "<CMD>LazyGit<cr>", { desc = "LazyGit" })
+	setup_neogit()
 end
 
 return M

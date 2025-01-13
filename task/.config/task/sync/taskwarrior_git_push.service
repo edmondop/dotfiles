@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/edmondo/.local/config/task/sync/git_push.sh
+ExecStart=/home/edmondo/.config/task/sync/git_push.sh
 
 [Install]
 WantedBy=multi-user.target

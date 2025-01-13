@@ -14,9 +14,11 @@ return {
 	-- 	event = "BufEnter",
 	-- },
 	{
-		"yetone/avante.nvim",
-		event = "VeryLazy",
-		lazy = false,
-		build = "make",
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = true,
 	},
 }

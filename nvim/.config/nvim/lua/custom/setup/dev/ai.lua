@@ -1,6 +1,13 @@
-local setup_avante = function()
-	require("avante").setup({
-		provider = "copilot",
+local setup_codecompanion = function()
+	require("codecompanion").setup({
+		strategies = {
+			chat = {
+				adapter = "copilot",
+			},
+			inline = {
+				adapter = "copilot",
+			},
+		},
 	})
 end
 
@@ -8,6 +15,6 @@ end
 local M = {}
 M.setup = function(opts)
 	require("CopilotChat").setup({})
-	setup_avante()
+	setup_codecompanion()
 end
 return M

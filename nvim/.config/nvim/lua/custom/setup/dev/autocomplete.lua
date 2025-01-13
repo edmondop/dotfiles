@@ -5,6 +5,7 @@ local primary_sources = {
 	{ name = "nvim_lsp" },
 	{ name = "copilot" },
 	{ name = "luasnip" }, -- For luasnip users.
+	{ name = "codecompanion" },
 }
 local secondary_sources = {
 	{ name = "buffer" },

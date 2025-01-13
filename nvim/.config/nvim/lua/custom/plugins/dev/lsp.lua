@@ -10,7 +10,6 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "saghen/blink.cmp" },
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",

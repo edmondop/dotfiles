@@ -1,0 +1,10 @@
+[Unit]
+Description=Push Taskwarrior Git changes
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/edmondo/.local/config/task/sync/git_push.sh
+
+[Install]
+WantedBy=multi-user.target

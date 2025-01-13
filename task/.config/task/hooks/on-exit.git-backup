@@ -1,0 +1,26 @@
+#!/bin/bash
+TASK_DIR="$HOME/.local/share/task"
+BACKUP_MSG="Taskwarrior backup: $(date +"%Y-%m-%d %H:%M:%S")"
+
+INPUT=$(cat)
+
+# Check if there's any input (i.e., tasks were modified, added, or deleted)
+if [[ -n "$INPUT" ]]; then
+    if [ ! -d "$TASK_DIR/.git" ]; then
+        echo "Git not initialized in $TASK_DIR" >&2
+        exit 1
+    fi
+
+    cd "$TASK_DIR" || exit
+    git add -A
+    if git commit -m "$BACKUP_MSG" --quiet; then
+        #git push origin main --quiet
+        echo "Git backup succeeded" >&2
+    else
+        echo "Git backup failed" >&2
+        exit 1
+    fi
+else
+    # No tasks were modified, added, or deleted
+    echo "No changes to backup" >&2
+fi

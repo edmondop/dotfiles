@@ -1,13 +1,14 @@
 return {
 	{
-		"github/copilot.vim",
+		"zbirenbaum/copilot.lua",
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
-			{ "github/copilot.vim" },
-			{ "nvim-lua/plenary.nvim" },
+			{ "zbirenbaum/copilot.lua" },
+			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
+		build = "make tiktoken",
 	},
 	-- {
 	-- 	"Exafunction/codeium.vim",

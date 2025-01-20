@@ -11,7 +11,6 @@ local secondary_sources = {
 	{ name = "buffer" },
 	-- { name = "codeium" },
 }
-
 local setup_base_cmp = function()
 	local lspkind = require("lspkind")
 	cmp.setup({
@@ -20,16 +19,24 @@ local setup_base_cmp = function()
 				require("luasnip").lsp_expand(args.body)
 			end,
 		},
+
 		--- @diagnostic disable-next-line
 		formatting = {
 			format = lspkind.cmp_format({
-				mode = "symbol",
+				mode = "symbol_text",
 				max_width = {
 					menu = 50,
-					abbr = 50,
+					abbr = 30,
 				},
 				ellipsis_char = "...",
 				show_labelDetails = true,
+				menu = {
+					buffer = "[Buffer]",
+					nvim_lsp = "[LSP]",
+					luasnip = "[LuaSnip]",
+					nvim_lua = "[Lua]",
+					latex_symbols = "[Latex]",
+				},
 				before = function(entry, vim_item)
 					return vim_item
 				end,
@@ -53,7 +60,6 @@ local setup_base_cmp = function()
 		sources = cmp.config.sources(primary_sources, secondary_sources),
 	})
 end
-
 local setup_cmdline_extension = function()
 	cmp.setup.cmdline("/", {
 		mapping = cmp.mapping.preset.cmdline(),

@@ -34,4 +34,18 @@ return {
 		"reedes/vim-pencil",
 	},
 	{ "echasnovski/mini.cursorword", version = "*" },
+	{
+		"epwalsh/obsidian.nvim",
+		event = {
+			-- Lazy-load obsidian.nvim only for Markdown files in your vault
+			"BufReadPre "
+				.. vim.fn.expand("~/Documents/PersonalKnowledge")
+				.. "/*.md",
+			"BufNewFile " .. vim.fn.expand("~/Documents/PersonalKnowledge") .. "/*.md",
+		},
+		{
+			"3rd/image.nvim",
+			opts = {},
+		},
+	},
 }

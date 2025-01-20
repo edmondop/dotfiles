@@ -16,6 +16,7 @@ local langs = {
 	"luadoc",
 	"json",
 	"markdown",
+	"markdown_inline",
 	"proto",
 	"python",
 	"regex",

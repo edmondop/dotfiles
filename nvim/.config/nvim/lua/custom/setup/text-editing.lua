@@ -46,13 +46,31 @@ local setup_distractionfree_editing = function()
 	vim.keymap.set("n", "<leader>zT", "<CMD>Twilight<CR>", { desc = "Twilight" })
 end
 
+local setup_obsidian_editing = function()
+	require("obsidian").setup({
+		workspaces = {
+			{
+				name = "pkmg",
+				path = "~/Documents/PersonalKnowledge",
+			},
+		},
+	})
+end
+
+local setup_images_rendering = function()
+	require("image").setup({})
+end
+
 --- @class TextEditing
 local M = {}
 M.setup = function(opts)
+	vim.g["pencil#conceallevel"] = 1
 	setup_substitute_keymaps()
 	setup_folding(opts)
+	setup_images_rendering()
 	setup_markdown_capabilities()
 	setup_distractionfree_editing()
+	setup_obsidian_editing()
 	-- Extension for telescope :Telescope neoclip
 	require("neoclip").setup({
 		enable_persistent_history = true,

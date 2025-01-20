@@ -12,3 +12,7 @@ set.clipboard:append("unnamedplus")
 -- Always split in certain directions
 set.splitright = true
 -- set.splitbelow = true
+
+-- Conceal level for Obsidian
+-- https://github.com/epwalsh/obsidian.nvim#concealing-characters
+set.conceallevel = 1

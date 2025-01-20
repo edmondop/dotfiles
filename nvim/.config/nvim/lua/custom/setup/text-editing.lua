@@ -46,19 +46,50 @@ local setup_distractionfree_editing = function()
 	vim.keymap.set("n", "<leader>zT", "<CMD>Twilight<CR>", { desc = "Twilight" })
 end
 
+local pkmg_path = "~/Documents/PersonalKnowledge"
+local vault_img_folder = "Assets/Attachments"
+
 local setup_obsidian_editing = function()
 	require("obsidian").setup({
 		workspaces = {
 			{
 				name = "pkmg",
-				path = "~/Documents/PersonalKnowledge",
+				path = pkmg_path,
 			},
+		}, -- Specify how to handle attachments.
+		--- @diagnostic disable-next-line
+		attachments = {
+			img_folder = vault_img_folder,
+			---@param client obsidian.Client
+			---@param path obsidian.Path the absolute path to the image file
+			---@return string
+			img_text_func = function(client, path)
+				path = client:vault_relative_path(path) or path
+				return string.format("![%s](%s)", path.name, path)
+			end,
 		},
 	})
 end
 
 local setup_images_rendering = function()
-	require("image").setup({})
+	--- @diagnostic disable-next-line
+	require("image").setup({
+		integrations = {
+			markdown = {
+				enabled = true,
+				resolve_image_path = function(document_path, image_path, fallback)
+					local obsidian_client = require("obsidian").get_client()
+					local full_path = vault_img_folder .. "/" .. image_path
+					local new_image_path = obsidian_client:vault_relative_path(full_path).filename
+					if vim.fn.filereadable(new_image_path) == 1 then
+						return new_image_path
+					else
+						return fallback(document_path, image_path)
+					end
+				end,
+			},
+		},
+	})
 end
 
 --- @class TextEditing

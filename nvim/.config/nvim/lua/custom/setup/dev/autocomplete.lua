@@ -14,6 +14,9 @@ local secondary_sources = {
 local setup_base_cmp = function()
 	local lspkind = require("lspkind")
 	cmp.setup({
+		completion = {
+			debounce = 100,
+		},
 		snippet = {
 			expand = function(args)
 				require("luasnip").lsp_expand(args.body)

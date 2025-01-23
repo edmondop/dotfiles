@@ -6,9 +6,10 @@ local parsing = require("custom.plugins.dev.parsing")
 local productivity = require("custom.plugins.dev.productivity")
 local remoting = require("custom.plugins.dev.remoting")
 local snippets = require("custom.plugins.dev.snippets")
+local testing = require("custom.plugins.dev.testing")
 
 local result = {}
-for _, tbl in ipairs({ ai, dap, langs, lsp, parsing, productivity, remoting, snippets }) do
+for _, tbl in ipairs({ ai, dap, langs, lsp, parsing, productivity, remoting, snippets, testing }) do
 	vim.list_extend(result, tbl)
 end
 

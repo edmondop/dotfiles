@@ -17,15 +17,6 @@ return {
 		},
 	},
 	{
-		"nvim-neotest/neotest",
-		lazy = true,
-		dependencies = {
-			"nvim-neotest/neotest-plenary",
-			"nvim-neotest/neotest-python",
-			"nvim-neotest/nvim-nio",
-		},
-	},
-	{
 		"folke/trouble.nvim",
 		opts = {},
 		cmd = "Trouble",

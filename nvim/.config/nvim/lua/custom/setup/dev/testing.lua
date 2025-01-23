@@ -8,6 +8,9 @@ local setup_neotest = function()
 			}),
 			require("neotest-plenary"),
 			require("rustaceanvim.neotest"),
+			require("neotest-golang")({
+				testify_enabled = true,
+			}),
 		},
 		output = { open_on_run = true, enabled = true },
 	})

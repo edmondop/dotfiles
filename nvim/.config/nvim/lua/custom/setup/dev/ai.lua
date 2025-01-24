@@ -63,6 +63,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 --- @class AI
 local M = {}
 M.setup = function(opts)
+	require("copilot").setup({})
 	require("CopilotChat").setup({})
 	setup_codecompanion()
 end

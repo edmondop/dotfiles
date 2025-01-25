@@ -1,25 +1,25 @@
 local setup_trouble = function()
-	vim.keymap.set("n", "<leader>TX", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Trouble - Diagnostics" })
+	vim.keymap.set("n", "<leader>tX", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Trouble - Diagnostics" })
 
 	vim.keymap.set(
 		"n",
-		"<leader>TB",
-		"<CMD>Trouble diagnostics toggle filter.buf=0<cr>",
+		"<leader>tB",
+		"<CMD>trouble diagnostics toggle filter.buf=0<cr>",
 		{ desc = "Buffer Diagnostics (Trouble)" }
 	)
 
-	vim.keymap.set("n", "<leader>TS", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
+	vim.keymap.set("n", "<leader>tS", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
 
 	vim.keymap.set(
 		"n",
-		"<leader>TR",
-		"<CMD>Trouble lsp toggle focus=false win.position=right<cr>",
+		"<leader>tR",
+		"<CMD>trouble lsp toggle focus=false win.position=right<cr>",
 		{ desc = "Trouble - LSP Definitions / references / ... (Trouble)" }
 	)
 
-	vim.keymap.set("n", "<leader>TL", "<CMD>Trouble loclist toggle<cr>", { desc = "Location List" })
+	vim.keymap.set("n", "<leader>tL", "<CMD>Trouble loclist toggle<cr>", { desc = "Trouble - Location List" })
 
-	vim.keymap.set("n", "<leader>TQ", "<CMD>Trouble qflist toggle<cr>", {
+	vim.keymap.set("n", "<leader>tQ", "<CMD>Trouble qflist toggle<cr>", {
 		desc = "Trouble - Quickfix List",
 	})
 end

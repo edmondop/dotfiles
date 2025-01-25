@@ -17,16 +17,16 @@ local setup_neotest = function()
 end
 
 local setup_neotest_keymaps = function()
-	vim.keymap.set("n", "<leader>Tn", ":Neotest run<CR>", { desc = "Run nearest test" })
-	vim.keymap.set("n", "<leader>Td", function()
+	vim.keymap.set("n", "<leader>tn", ":Neotest run<CR>", { desc = "Run nearest test" })
+	vim.keymap.set("n", "<leader>td", function()
 		neotest.run.run({ vim.fn.expand("%"), strategy = "dap", suite = false })
 	end, { desc = "Run nearest test" })
-	vim.keymap.set("n", "<leader>Tf", ":Neotest run file<CR>", { desc = "Run all tests in a file" })
-	vim.keymap.set("n", "<leader>Tl", ":Neotest run last<CR>", { desc = "Run last test" })
-	vim.keymap.set("n", "<leader>Tv", ":Neotest output-panel<CR>", { desc = "Toggle output panel" })
-	vim.keymap.set("n", "<leader>To", ":Neotest output<CR>", { desc = "Show output" })
-	vim.keymap.set("n", "<leader>Ts", ":Neotest summary<CR>", { desc = "Neotest summary" })
-	vim.keymap.set("n", "<leader>Tx", ":Neotest output-panel clear<CR>", { desc = "Clear output panel" })
+	vim.keymap.set("n", "<leader>tf", ":Neotest run file<CR>", { desc = "Neotest - Run all tests in a file" })
+	vim.keymap.set("n", "<leader>tl", ":Neotest run last<CR>", { desc = "Neotest - Run last test" })
+	vim.keymap.set("n", "<leader>tv", ":Neotest output-panel<CR>", { desc = "Neotest - Toggle output panel" })
+	vim.keymap.set("n", "<leader>to", ":Neotest output<CR>", { desc = "Neotest - Show output" })
+	vim.keymap.set("n", "<leader>ts", ":Neotest summary<CR>", { desc = "Neotest - summary" })
+	vim.keymap.set("n", "<leader>tx", ":Neotest output-panel clear<CR>", { desc = "Neotest - Clear output panel" })
 end
 --- @class Testing
 local M = {}

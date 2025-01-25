@@ -32,11 +32,11 @@ local setup_navigation_keymaps = function()
 end
 
 local setup_tabs_keymaps = function()
-	vim.keymap.set("n", "<leader>to", "<CMD>tabnew<CR>", { desc = "Open new tab" })
-	vim.keymap.set("n", "<leader>tx", "<CMD>tabclose<CR>", { desc = "Close current tab" })
-	vim.keymap.set("n", "<leader>tn", "<CMD>tabn<CR>", { desc = "Go to next tab" })
-	vim.keymap.set("n", "<leader>tp", "<CMD>tabp<CR>", { desc = "Go to previous tab" })
-	vim.keymap.set("n", "<leader>tf", "<CMD>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+	vim.keymap.set("n", "<leader>To", "<CMD>tabnew<CR>", { desc = "Open new tab" })
+	vim.keymap.set("n", "<leader>Tx", "<CMD>tabclose<CR>", { desc = "Close current tab" })
+	vim.keymap.set("n", "<leader>Tn", "<CMD>tabn<CR>", { desc = "Go to next tab" })
+	vim.keymap.set("n", "<leader>Tp", "<CMD>tabp<CR>", { desc = "Go to previous tab" })
+	vim.keymap.set("n", "<leader>Tf", "<CMD>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 end
 
 local setup_harpoon = function()
@@ -67,8 +67,8 @@ local setup_which_key = function()
 		{ "<leader>h", group = "Harpoon" },
 		{ "<leader>s", group = "Swap" },
 		{ "<leader>S", group = "Substitute" },
-		{ "<leader>t", group = "Tabs" },
-		{ "<leader>T", group = "Tests/Troubles" },
+		{ "<leader>T", group = "Tabs" },
+		{ "<leader>t", group = "Tests/Troubles" },
 		{ "<leader>y", group = "Yanking" },
 		{ "<leader>w", group = "Windows/Sessions" },
 		{ "<leader>z", group = "Zenmode/Twlight" },
@@ -93,7 +93,7 @@ local setup_task_warrior = function()
 		taskwarrior.browser({ "ready" })
 	end, {})
 	-- Map the function to a keybinding
-	vim.api.nvim_set_keymap("n", "<leader>tw", "TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
+	vim.api.nvim_set_keymap("n", "<leader>Tw", "TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
 end
 
 local setup_tmux_navigation = function()

@@ -8,20 +8,6 @@ return {
 		},
 	},
 	{
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = {
-			library = {
-				{ path = "luvit-meta/library", words = { "vim%.uv" } },
-			},
-		},
-	},
-	{
-		"folke/trouble.nvim",
-		opts = {},
-		cmd = "Trouble",
-	},
-	{
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
@@ -39,5 +25,13 @@ return {
 	},
 	{
 		"ribelo/taskwarrior.nvim",
+	},
+	{
+		"oysandvik94/curl.nvim",
+		cmd = { "CurlOpen" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = true,
 	},
 }

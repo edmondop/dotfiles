@@ -1,29 +1,3 @@
-local setup_trouble = function()
-	vim.keymap.set("n", "<leader>TX", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Trouble - Diagnostics" })
-
-	vim.keymap.set(
-		"n",
-		"<leader>TB",
-		"<CMD>Trouble diagnostics toggle filter.buf=0<cr>",
-		{ desc = "Buffer Diagnostics (Trouble)" }
-	)
-
-	vim.keymap.set("n", "<leader>TS", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
-
-	vim.keymap.set(
-		"n",
-		"<leader>TR",
-		"<CMD>Trouble lsp toggle focus=false win.position=right<cr>",
-		{ desc = "Trouble - LSP Definitions / references / ... (Trouble)" }
-	)
-
-	vim.keymap.set("n", "<leader>TL", "<CMD>Trouble loclist toggle<cr>", { desc = "Location List" })
-
-	vim.keymap.set("n", "<leader>TQ", "<CMD>Trouble qflist toggle<cr>", {
-		desc = "Trouble - Quickfix List",
-	})
-end
-
 local setup_comments_extensions = function()
 	-- Comment provides bulk commenting in linewise and blockwise mode
 	-- i.e. gcc/gbc in normal mode, gc and gb in visual mode
@@ -65,6 +39,5 @@ M.setup = function()
 	setup_aerial()
 	setup_comments_extensions()
 	setup_indent_guides()
-	setup_trouble()
 end
 return M

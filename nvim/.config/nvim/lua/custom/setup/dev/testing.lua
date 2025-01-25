@@ -17,7 +17,7 @@ local setup_neotest = function()
 end
 
 local setup_neotest_keymaps = function()
-	vim.keymap.set("n", "<leader>tn", ":Neotest run<CR>", { desc = "Run nearest test" })
+	vim.keymap.set("n", "<leader>tn", ":Neotest run<CR>", { desc = "Neotest - Run nearest test" })
 	vim.keymap.set("n", "<leader>td", function()
 		neotest.run.run({ vim.fn.expand("%"), strategy = "dap", suite = false })
 	end, { desc = "Run nearest test" })

@@ -3,23 +3,23 @@ local setup_trouble = function()
 
 	vim.keymap.set(
 		"n",
-		"<leader>tB",
-		"<CMD>trouble diagnostics toggle filter.buf=0<cr>",
-		{ desc = "Buffer Diagnostics (Trouble)" }
+		"<leader>tb",
+		"<CMD>Trouble diagnostics toggle filter.buf=0<cr>",
+		{ desc = "Trouble - Buffer Diagnostics" }
 	)
 
-	vim.keymap.set("n", "<leader>tS", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
+	vim.keymap.set("n", "<leader>ts", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
 
 	vim.keymap.set(
 		"n",
-		"<leader>tR",
-		"<CMD>trouble lsp toggle focus=false win.position=right<cr>",
+		"<leader>tr",
+		"<CMD>Trouble lsp toggle focus=false win.position=right<cr>",
 		{ desc = "Trouble - LSP Definitions / references / ... (Trouble)" }
 	)
 
 	vim.keymap.set("n", "<leader>tL", "<CMD>Trouble loclist toggle<cr>", { desc = "Trouble - Location List" })
 
-	vim.keymap.set("n", "<leader>tQ", "<CMD>Trouble qflist toggle<cr>", {
+	vim.keymap.set("n", "<leader>tq", "<CMD>Trouble qflist toggle<cr>", {
 		desc = "Trouble - Quickfix List",
 	})
 end

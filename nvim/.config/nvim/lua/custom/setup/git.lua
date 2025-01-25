@@ -46,7 +46,7 @@ local setup_diff_keymaps = function(bufnr)
 	map(bufnr, "n", "<leader>GD", function()
 		gitsigns.diffthis("~")
 	end, { desc = "Diff This (vs last commit)" })
-	map(bufnr, "n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
+	map(bufnr, "n", "<leader>GP", gitsigns.preview_hunk_inline, { desc = "Preview Hunk Inline / Toggle Deleted" })
 end
 
 local setup_neogit = function()

@@ -50,25 +50,28 @@ local pkmg_path = "~/Documents/PersonalKnowledge"
 local vault_img_folder = "Assets/Attachments"
 
 local setup_obsidian_editing = function()
-	require("obsidian").setup({
-		workspaces = {
-			{
-				name = "pkmg",
-				path = pkmg_path,
+	local uv = vim.loop -- Use Neovim's libuv wrapper to check file system
+	if pkmg_path and uv.fs_stat(pkmg_path) then
+		require("obsidian").setup({
+			workspaces = {
+				{
+					name = "pkmg",
+					path = pkmg_path,
+				},
+			}, -- Specify how to handle attachments.
+			--- @diagnostic disable-next-line
+			attachments = {
+				img_folder = vault_img_folder,
+				---@param client obsidian.Client
+				---@param path obsidian.Path the absolute path to the image file
+				---@return string
+				img_text_func = function(client, path)
+					path = client:vault_relative_path(path) or path
+					return string.format("![%s](%s)", path.name, path)
+				end,
 			},
-		}, -- Specify how to handle attachments.
-		--- @diagnostic disable-next-line
-		attachments = {
-			img_folder = vault_img_folder,
-			---@param client obsidian.Client
-			---@param path obsidian.Path the absolute path to the image file
-			---@return string
-			img_text_func = function(client, path)
-				path = client:vault_relative_path(path) or path
-				return string.format("![%s](%s)", path.name, path)
-			end,
-		},
-	})
+		})
+	end
 end
 
 local setup_images_rendering = function()

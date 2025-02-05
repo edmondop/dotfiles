@@ -44,6 +44,8 @@ matches:
       - Avoid using Math formulas with \ . Obsidian supports the $$ syntax. Try to use UTF characters for simple expressions (dot product?)
       - Use paragraph to organize the thoughts into self-contained sections, and use titles with headers.
       - Avoid bullet point lists except for finite sets (i.e. days of the week)
+      - Do not include a final conclusion
+      - Use bold to highlights the most **important** words
+      - When you are listing multiple options, please be sure that the most important differences are immediately clear (i.e. a Rust library that is sync vs async)
 
   # And much more! For more information, visit the docs: https://espanso.org/docs/
-

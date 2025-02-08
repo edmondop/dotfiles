@@ -16,3 +16,6 @@ set.splitright = true
 -- Conceal level for Obsidian
 -- https://github.com/epwalsh/obsidian.nvim#concealing-characters
 set.conceallevel = 1
+
+-- Relative numbers useful to move up and down
+set.relativenumber = true

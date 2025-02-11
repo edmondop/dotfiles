@@ -1,6 +1,17 @@
 return {
 	{
-		"github/copilot.vim",
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+	},
+	{
+		"jonahgoldwastaken/copilot-status.nvim",
+		dependencies = { "zbirenbaum/copilot.lua" },
+		event = "BufReadPost",
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",

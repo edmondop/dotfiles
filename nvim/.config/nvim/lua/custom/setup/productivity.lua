@@ -58,7 +58,6 @@ local setup_which_key = function()
 	local wk = require("which-key")
 	wk.setup({})
 	wk.add({
-		{ "<leader>a", group = "Avante" },
 		{ "<leader>c", group = "Code" },
 		{ "<leader>d", group = "Debug" },
 		{ "<leader>e", group = "Edit config/plugins" },
@@ -93,7 +92,7 @@ local setup_task_warrior = function()
 		taskwarrior.browser({ "ready" })
 	end, {})
 	-- Map the function to a keybinding
-	vim.api.nvim_set_keymap("n", "<leader>Tw", "TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
+	vim.api.nvim_set_keymap("n", "<leader>Tw", "<CMD>TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
 end
 
 local setup_tmux_navigation = function()

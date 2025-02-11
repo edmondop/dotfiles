@@ -1,5 +1,8 @@
 local lsps = {
 	"bashls",
+	-- cannot be installed as lsp?
+	-- "bacon",
+	-- "bacon_ls",
 	"graphql",
 	"gopls",
 	"jdtls",

@@ -1,5 +1,5 @@
 local setup_trouble = function()
-	vim.keymap.set("n", "<leader>tX", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Trouble - Diagnostics" })
+	vim.keymap.set("n", "<leader>tX", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Trouble - All Diagnostics" })
 
 	vim.keymap.set(
 		"n",
@@ -31,7 +31,12 @@ local setup_vim_diagnostics_keymaps = function()
 end
 
 local setup_telescope_diagnostics_keymaps = function()
-	vim.keymap.set("n", "<leader>D", "<CMD>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
+	vim.keymap.set(
+		"n",
+		"<leader>D",
+		"<CMD>Telescope diagnostics bufnr=0 wrap_results=true<CR>",
+		{ desc = "Show buffer diagnostics" }
+	)
 end
 --- @class Diagnostics
 local M = {}

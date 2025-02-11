@@ -83,7 +83,7 @@ local setup_statusline = function()
 				local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
 
 				local codecompanion = aisetup.codecompanion_status()
-
+				local copilot = aisetup.copilot_status()
 				return mini_statusline.combine_groups({
 					{ hl = mode_hl, strings = { mode } },
 					{ hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
@@ -92,6 +92,7 @@ local setup_statusline = function()
 					"%=", -- End left alignment
 					{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
 					{ hl = "MiniStatuslineFilename", strings = { codecompanion } }, -- Add the spinner here
+					{ hl = "MiniStatuslineFilename", strings = { copilot } }, -- Add the spinner here
 					{ hl = mode_hl, strings = { search, location } },
 				})
 			end,

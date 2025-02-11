@@ -4,15 +4,31 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local primary_sources = {
 	{ name = "nvim_lsp" },
 	{ name = "copilot" },
-	{ name = "luasnip" }, -- For luasnip users.
+	{ name = "luasnip" },
 	{ name = "codecompanion" },
 }
 local secondary_sources = {
 	{ name = "buffer" },
 	-- { name = "codeium" },
 }
+local has_words_before = function()
+	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+		return false
+	end
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
+
+cmp.setup({})
 local setup_base_cmp = function()
 	local lspkind = require("lspkind")
+	lspkind.init({
+		symbol_map = {
+			Copilot = "",
+		},
+	})
+
+	vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 	cmp.setup({
 		completion = {
 			debounce = 100,
@@ -34,6 +50,7 @@ local setup_base_cmp = function()
 				ellipsis_char = "...",
 				show_labelDetails = true,
 				menu = {
+					copilot = "[Copilot]",
 					buffer = "[Buffer]",
 					nvim_lsp = "[LSP]",
 					luasnip = "[LuaSnip]",
@@ -59,6 +76,13 @@ local setup_base_cmp = function()
 			["<C-Space>"] = cmp.mapping.complete(),
 			["<C-e>"] = cmp.mapping.abort(),
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
+			["<Tab>"] = vim.schedule_wrap(function(fallback)
+				if cmp.visible() and has_words_before() then
+					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					fallback()
+				end
+			end),
 		}),
 		sources = cmp.config.sources(primary_sources, secondary_sources),
 	})

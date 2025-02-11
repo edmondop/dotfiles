@@ -10,6 +10,7 @@ local setup_codecompanion = function()
 		},
 	})
 end
+
 local spinner_symbols = {
 	"⠋",
 	"⠙",
@@ -59,13 +60,33 @@ vim.api.nvim_create_autocmd({ "User" }, {
 	end,
 })
 
+function setup_copilot()
+	require("copilot").setup({
+		-- suggestions = { enabled = false },
+		-- panel = { enabled = false },
+		filetypes = {
+			yaml = true,
+		},
+	})
+	require("copilot_cmp").setup({})
+end
+
 --- @class AI
 local M = {}
 M.setup = function(opts)
+	setup_copilot({})
 	require("CopilotChat").setup({})
 	setup_codecompanion()
 end
 M.codecompanion_status = function()
 	return update_spinner()
+end
+
+M.copilot_status = function()
+	local ok, copilot_status = pcall(require, "copilot_status")
+	if not ok then
+		return "Copilot Status not available"
+	end
+	return copilot_status.status_string()
 end
 return M

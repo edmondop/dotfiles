@@ -30,7 +30,7 @@ local setup_hunks_navigation_keymaps = function(bufnr)
 		else
 			gitsigns.nav_hunk("next")
 		end
-	end)
+	end, { desc = "Next hunk" })
 
 	map(bufnr, "n", "[c", function()
 		if vim.wo.diff then
@@ -38,7 +38,7 @@ local setup_hunks_navigation_keymaps = function(bufnr)
 		else
 			gitsigns.nav_hunk("prev")
 		end
-	end)
+	end, { desc = "Previous hunk" })
 end
 
 local setup_diff_keymaps = function(bufnr)

@@ -33,9 +33,9 @@ end
 local setup_telescope_diagnostics_keymaps = function()
 	vim.keymap.set(
 		"n",
-		"<leader>D",
+		"<leader>tD",
 		"<CMD>Telescope diagnostics bufnr=0 wrap_results=true<CR>",
-		{ desc = "Show buffer diagnostics" }
+		{ desc = "Telescope: Show buffer diagnostics" }
 	)
 end
 --- @class Diagnostics

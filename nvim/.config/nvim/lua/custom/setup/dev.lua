@@ -3,6 +3,7 @@ local M = {}
 M.setup = function(opts)
 	require("custom.setup.dev.ai").setup(opts)
 	require("custom.setup.dev.autocomplete").setup(opts)
+	require("custom.setup.dev.databases").setup(opts)
 	require("custom.setup.dev.dataeng").setup(opts)
 	require("custom.setup.dev.debugging").setup(opts)
 	require("custom.setup.dev.diagnostics").setup(opts)

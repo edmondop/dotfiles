@@ -111,10 +111,21 @@ local setup_cmdline_extension = function()
 	})
 end
 
+function setup_cmd_sql()
+	cmp.setup.filetype("sql", {
+		sources = cmp.config.sources({
+			{ name = "vim-dadbod-completion" },
+		}, {
+			{ name = "buffer" },
+		}),
+	})
+end
+
 --- @class Autocomplete
 local M = {}
 M.setup = function(opts)
 	setup_base_cmp()
 	setup_cmdline_extension()
+	setup_cmd_sql()
 end
 return M

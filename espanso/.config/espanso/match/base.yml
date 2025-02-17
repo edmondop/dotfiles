@@ -48,4 +48,16 @@ matches:
       - Use bold to highlights the most **important** words
       - When you are listing multiple options, please be sure that the most important differences are immediately clear (i.e. a Rust library that is sync vs async)
       - Use code examples
-  # And much more! For more information, visit the docs: https://espanso.org/docs/
+  - trigger: ":whoami-prompt"
+    replace: |
+      My name is Edmondo and you can call me Ed. 
+      I am a software engineer with more than 15 years of experience. I started working
+      as a full stack in 2008 on Java, then I did a lot of Scala. I worked at Goldman
+      Sachs between 2014 and 2016, and between 2010 and 2014 at a brokerage firm.
+      In between 2016 and 2021 I was CTO of a fintech I co-founded, which we started
+      on AWS using ECS. We later migrated to Kubernetes using Kops first and later 
+      EKS. I have worked therefore extensively with Docker, Kubernetes, Kafka,
+      Scala, Python, CQRS, Rust, Spark, Databricks and much more. However,
+      as each engineer, I have gaps and I am asking your help to learn.
+      I want you to be really concise, and really go deep. Cut the fluff.
+      Provide examples, if applicable, code examples. Compare and contrast.

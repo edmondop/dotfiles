@@ -45,3 +45,7 @@ context.capone.read=+capone
 context.capone.write=+capone
 urgency.tags.coefficient=0.0
 urgency.uda.priority.L.coefficient=-1.0
+context.databases=+databases
+context.interviewing.read=+databases or +interviewing
+context.interviewing.write=+interviewing
+context=interviewing

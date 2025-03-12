@@ -37,17 +37,20 @@ matches:
   - trigger: ":chatgpt-note"
     replace: |
       Remember to follow best practices for writing a Note for my Obsidian Vault:
-      - Avoid being redundant, sometimes you discuss the same aspect twice
+      - Avoid being redundant, sometimes you discuss the same aspect twice. Strive for maximum clarity and precision, having focused section without veering into repetitive of overly broaded statement
+      - Avoid also being redundant across sections, it's a single note, so assume people read it from top to bottom
       - Avoid obvious technical facts (i.e. the trade-off between latency and throughput) but feel free to provide complex technical insights,
       as well as code examples if applicable. Feel also free to expand on the root cause (i.e. why it is unfeasible to invert a scalar product on an elliptic curve? And you explain about scalar products, sum on an elliptic curve, etc)
-      - Avoid using styles for headers. Avoid a title, Obsidian will assign one. Starts paragraphs from H2/##
+      - Avoid using styling/bold for headers. Avoid a title, Obsidian will assign one. Starts paragraphs from H2/##
       - Avoid using Math formulas with \ . Obsidian supports the $$ syntax. Try to use UTF characters for simple expressions (dot product?)
       - Use paragraph to organize the thoughts into self-contained sections, and use titles with headers.
-      - Avoid bullet point lists except for finite sets (i.e. days of the week)
+      - Avoid bullet point lists except for finite sets (i.e. days of the week, or Iceberg, Delta Lake, Hudi)
       - Do not include a final conclusion
-      - Use bold to highlights the most **important** words
+      - Use bold to highlights the most **important** words, you can also use callouts ![tip] ![important] ![warning] 
+      - Be technically precise, for example when describing how Iceberg provides immutable field ID describes exactly in which part of its metadata.
       - When you are listing multiple options, please be sure that the most important differences are immediately clear (i.e. a Rust library that is sync vs async)
-      - Use code examples
+      - Use code examples, inline examples and version details.
+
   - trigger: ":whoami-prompt"
     replace: |
       My name is Edmondo and you can call me Ed. 

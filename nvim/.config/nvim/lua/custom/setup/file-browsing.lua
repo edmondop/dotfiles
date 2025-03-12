@@ -29,14 +29,34 @@ local setup_oil = function()
 end
 
 local setup_neotree = function()
+	require("neo-tree").setup({
+		filesystem = {
+			filtered_items = {
+				never_show = { -- List of specific files/folders to always hide
+					".git",
+					-- Add other directories you want to hide permanently
+				},
+				always_show = { -- List of specific files/folders to always show
+					".github",
+					".config",
+					-- Add other directories you want to show permanently
+				},
+			},
+		},
+	})
 	-- Neotree
 	require("neo-tree").setup({
 		filesystem = {
 			filtered_items = {
+				visible = true,
+				hide_dotfiles = true,
 				hide_gitignored = false,
 				always_show = {
-					".gitignored",
+					".github",
 					".config",
+				},
+				never_show = {
+					".git",
 				},
 			},
 			follow_current_file = {

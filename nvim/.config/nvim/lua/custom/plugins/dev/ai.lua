@@ -33,4 +33,7 @@ return {
 		},
 		config = true,
 	},
+	{
+		"augmentcode/augment.vim",
+	},
 }

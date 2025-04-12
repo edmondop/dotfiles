@@ -26,6 +26,16 @@ local setup_rust_debugging = function()
 			cwd = "${workspaceFolder}",
 			stopOnEntry = false,
 		},
+		{
+			name = "Attach to Process",
+			type = "codelldb",
+			request = "attach",
+			pid = function()
+				return vim.fn.input("PID: ")
+			end,
+			stopOnEntry = false,
+			args = {}, -- additional arguments if necessary
+		},
 	}
 end
 

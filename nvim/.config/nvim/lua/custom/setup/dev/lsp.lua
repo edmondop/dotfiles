@@ -3,6 +3,7 @@ local lsps = {
 	-- cannot be installed as lsp?
 	-- "bacon",
 	-- "bacon_ls",
+	"cucumber_language_server",
 	"graphql",
 	"gopls",
 	"jdtls",
@@ -23,61 +24,106 @@ if vim.fn.getenv("ENABLE_NIX") == "1" then
 	vim.table.insert("force", lsps, "nil_ls")
 end
 
-local lsp_zero = require("lsp-zero")
-
 local setup_lsp_keymaps = function()
-	lsp_zero.on_attach(function(client, bufnr)
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code Action", buffer = bufnr })
-		vim.keymap.set("v", "<leader>ca", function()
-			if vim.lsp.buf.range_code_action then
-				vim.lsp.buf.range_code_action()
-			else
-				vim.lsp.buf.code_action()
+	local disable_semantic_tokens = {
+		lua = true,
+	}
+	vim.api.nvim_create_autocmd("LspAttach", {
+		callback = function(args)
+			local bufnr = args.buf
+			local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
+
+			local builtin = require("telescope.builtin")
+
+			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code Action", buffer = bufnr })
+			vim.keymap.set("v", "<leader>ca", function()
+				if vim.lsp.buf.range_code_action then
+					vim.lsp.buf.range_code_action()
+				else
+					vim.lsp.buf.code_action()
+				end
+			end, { desc = "LSP - Range Code Action", buffer = bufnr })
+			-- Productivity
+			vim.keymap.set(
+				"n",
+				"<leader>cs",
+				vim.lsp.buf.signature_help,
+				{ desc = "LSP - Signature help", buffer = bufnr }
+			)
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP - Hover documentation" })
+			-- Navigation
+			vim.keymap.set(
+				"n",
+				"<leader>cd",
+				builtin.lsp_definitions,
+				{ desc = "LSP - Go to definition", buffer = bufnr }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>cD",
+				vim.lsp.buf.declaration,
+				{ desc = "LSP - Go to declaration", buffer = bufnr }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>ci",
+				vim.lsp.buf.implementation,
+				{ desc = "LSP - Go to implementation", buffer = bufnr }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>ct",
+				vim.lsp.buf.type_definition,
+				{ desc = "LSP - Go to type definition", buffer = bufnr }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>cr",
+				builtin.lsp_references,
+				{ desc = "LSP - Go to reference", buffer = bufnr }
+			)
+
+			local filetype = vim.bo[bufnr].filetype
+			if disable_semantic_tokens[filetype] then
+				client.server_capabilities.semanticTokensProvider = nil
 			end
-		end, { desc = "LSP - Range Code Action", buffer = bufnr })
-		-- Productivity
-		vim.keymap.set("n", "<leader>cs", vim.lsp.buf.signature_help, { desc = "LSP - Signature help", buffer = bufnr })
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP - Hover documentation" })
-		-- Navigation
-		vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "LSP - Go to definition", buffer = bufnr })
-		vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { desc = "LSP - Go to declaration", buffer = bufnr })
-		vim.keymap.set(
-			"n",
-			"<leader>ci",
-			vim.lsp.buf.implementation,
-			{ desc = "LSP - Go to implementation", buffer = bufnr }
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>ct",
-			vim.lsp.buf.type_definition,
-			{ desc = "LSP - Go to type definition", buffer = bufnr }
-		)
-		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "LSP - Go to reference", buffer = bufnr })
-		-- Formatting
-		vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "LSP - Format file", buffer = bufnr })
-		vim.keymap.set("x", "<leader>cf", vim.lsp.buf.format, { desc = "LSP - Format selection", buffer = bufnr })
-		vim.keymap.set("n", "<space>cn", vim.lsp.buf.rename, { desc = "LSP Rename Symbol", buffer = bufnr })
-	end)
+
+			-- -- Override server capabilities
+			-- if settings.server_capabilities then
+			-- 	for k, v in pairs(settings.server_capabilities) do
+			-- 		if v == vim.NIL then
+			-- 			---@diagnostic disable-next-line: cast-local-type
+			-- 			v = nil
+			-- 		end
+			--
+			-- 		client.server_capabilities[k] = v
+			-- 	end
+			-- end
+		end,
+	})
 end
 
 local setup_lsp_capabilities = function()
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities.textDocument.foldingRange = {
-		dynamicRegistration = false,
-		lineFoldingOnly = true,
-	}
 	require("mason-lspconfig").setup({
 		ensure_installed = lsps,
 		handlers = {
-			lsp_zero.default_setup,
-			["yamlls"] = function()
-				require("lspconfig").yamlls.setup({
-					capabilities = capabilities,
-				})
-			end,
 			["rust_analyzer"] = function()
 				-- For compatibility with rustaceanvim
+			end,
+			function(server_name)
+				local capabilities = vim.lsp.protocol.make_client_capabilities()
+				capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+				if server_name == "yamlls" then
+					capabilities.textDocument.foldingRange = {
+						dynamicRegistration = false,
+						lineFoldingOnly = true,
+					}
+				end
+				require("lspconfig")[server_name].setup({
+					capabilities = capabilities,
+				})
 			end,
 		},
 	})

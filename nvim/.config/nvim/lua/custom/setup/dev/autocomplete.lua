@@ -1,131 +1,82 @@
-local cmp = require("cmp")
+-- local cmp = require("cmp")
+
+local blink = require("blink.cmp")
+local lspkind = require("lspkind")
+
+-- Load VSCode snippets via LuaSnip
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local primary_sources = {
-	{ name = "nvim_lsp" },
-	{ name = "copilot" },
-	{ name = "luasnip" },
-	{ name = "codecompanion" },
-}
-local secondary_sources = {
-	{ name = "buffer" },
-	-- { name = "codeium" },
-}
-local has_words_before = function()
-	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-		return false
-	end
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+-- Initialize lspkind with a custom symbol for Copilot
+lspkind.init({
+	symbol_map = { Copilot = "" },
+})
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+local setup_blink = function()
+	blink.setup({
+		keymap = { preset = "enter" },
+	})
+	-- 	snippet = {
+	-- 		expand = function(args)
+	-- 			require("luasnip").lsp_expand(args.body)
+	-- 		end,
+	-- 	},
+	-- 	formatting = {
+	-- 		format = lspkind.cmp_format({
+	-- 			mode = "symbol_text",
+	-- 			max_width = 50,
+	-- 			ellipsis_char = "...",
+	-- 			menu = {
+	-- 				copilot = "[Copilot]",
+	-- 				buffer = "[Buffer]",
+	-- 				lsp = "[LSP]",
+	-- 				snippets = "[LuaSnip]",
+	-- 				nvim_lua = "[Lua]",
+	-- 				latex_symbols = "[Latex]",
+	-- 			},
+	-- 		}),
+	-- 	},
+	-- 	-- mapping = blink.mapping.preset.insert(), -- use Blink’s default insert mappings
+	-- 	sources = {
+	-- 		{ name = "lsp" },
+	-- 		{ name = "copilot" },
+	-- 		{ name = "snippets" },
+	-- 		{ name = "codecompanion" },
+	-- 		{ name = "buffer" },
+	-- 	},
+	-- })
 end
 
-cmp.setup({})
-local setup_base_cmp = function()
-	local lspkind = require("lspkind")
-	lspkind.init({
-		symbol_map = {
-			Copilot = "",
-		},
-	})
-
-	vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-	cmp.setup({
-		completion = {
-			debounce = 100,
-		},
-		snippet = {
-			expand = function(args)
-				require("luasnip").lsp_expand(args.body)
-			end,
-		},
-
-		--- @diagnostic disable-next-line
-		formatting = {
-			format = lspkind.cmp_format({
-				mode = "symbol_text",
-				max_width = {
-					menu = 50,
-					abbr = 30,
-				},
-				ellipsis_char = "...",
-				show_labelDetails = true,
-				menu = {
-					copilot = "[Copilot]",
-					buffer = "[Buffer]",
-					nvim_lsp = "[LSP]",
-					luasnip = "[LuaSnip]",
-					nvim_lua = "[Lua]",
-					latex_symbols = "[Latex]",
-				},
-				before = function(entry, vim_item)
-					return vim_item
-				end,
-			}),
-		},
-		window = {
-			completion = {
-				border = "rounded",
-				col_offset = 0,
-				side_padding = 1,
-			},
-			documentation = { border = "rounded", max_width = 50, max_height = 30 },
-		},
-		mapping = cmp.mapping.preset.insert({
-			["<C-p>"] = cmp.mapping.scroll_docs(-4),
-			["<C-f>"] = cmp.mapping.scroll_docs(4),
-			["<C-Space>"] = cmp.mapping.complete(),
-			["<C-e>"] = cmp.mapping.abort(),
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
-			["<Tab>"] = vim.schedule_wrap(function(fallback)
-				if cmp.visible() and has_words_before() then
-					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-				else
-					fallback()
-				end
-			end),
-		}),
-		sources = cmp.config.sources(primary_sources, secondary_sources),
-	})
-end
 local setup_cmdline_extension = function()
-	cmp.setup.cmdline("/", {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = {
-			{ name = "buffer" },
-		},
-	})
-
-	-- `:` cmdline setup.
-	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = cmp.config.sources({
-			{ name = "path" },
-		}, {
-			{
-				name = "cmdline",
-				option = {
-					ignore_cmds = { "Man", "!" },
-				},
-			},
-		}),
-	})
+	-- Setup for searching ("/") and command-line (":")
+	-- blink.setup.cmdline("/", {
+	-- 	mapping = blink.mapping.preset.cmdline(),
+	-- 	sources = { { name = "buffer" } },
+	-- })
+	--
+	-- blink.setup.cmdline(":", {
+	-- 	mapping = blink.mapping.preset.cmdline(),
+	-- 	sources = {
+	-- 		{ name = "path" },
+	-- 		{ name = "cmdline", option = { ignore_cmds = { "Man", "!" } } },
+	-- 	},
+	-- })
 end
 
-function setup_cmd_sql()
-	cmp.setup.filetype("sql", {
-		sources = cmp.config.sources({
-			{ name = "vim-dadbod-completion" },
-		}, {
-			{ name = "buffer" },
-		}),
-	})
+local setup_cmd_sql = function()
+	-- blink.setup.filetype("sql", {
+	-- 	sources = {
+	-- 		{ name = "vim-dadbod-completion" },
+	-- 		{ name = "buffer" },
+	-- 	},
+	-- })
 end
 
 --- @class Autocomplete
 local M = {}
 M.setup = function(opts)
-	setup_base_cmp()
+	setup_blink()
 	setup_cmdline_extension()
+
 	setup_cmd_sql()
 end
 return M

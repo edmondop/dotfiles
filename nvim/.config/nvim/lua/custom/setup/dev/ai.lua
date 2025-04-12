@@ -1,14 +1,14 @@
 local setup_codecompanion = function()
-	-- require("codecompanion").setup({
-	-- 	strategies = {
-	-- 		chat = {
-	-- 			adapter = "copilot",
-	-- 		},
-	-- 		inline = {
-	-- 			adapter = "copilot",
-	-- 		},
-	-- 	},
-	-- })
+	require("codecompanion").setup({
+		strategies = {
+			chat = {
+				adapter = "copilot",
+			},
+			inline = {
+				adapter = "copilot",
+			},
+		},
+	})
 end
 
 local spinner_symbols = {

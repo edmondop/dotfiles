@@ -8,6 +8,7 @@ M.setup = function(opts)
 	require("custom.setup.git").setup(opts)
 	require("custom.setup.look-and-feel").setup(opts)
 	require("custom.setup.productivity").setup(opts)
+	require("custom.setup.snacks").setup(opts)
 	require("custom.setup.telescope").setup(opts)
 	require("custom.setup.text-editing").setup(opts)
 end

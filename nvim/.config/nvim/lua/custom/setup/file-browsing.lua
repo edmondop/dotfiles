@@ -1,4 +1,5 @@
---   Oil
+local Snacks = require("snacks")
+
 local setup_oil = function()
 	require("oil").setup({
 		default_file_explorer = true,
@@ -26,25 +27,19 @@ local setup_oil = function()
 		},
 	})
 	vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open oil in parent directory" })
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "OilActionsPost",
+		callback = function(event)
+			if event.data.actions.type == "move" then
+				Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+			end
+		end,
+	})
 end
 
 local setup_neotree = function()
-	require("neo-tree").setup({
-		filesystem = {
-			filtered_items = {
-				never_show = { -- List of specific files/folders to always hide
-					".git",
-					-- Add other directories you want to hide permanently
-				},
-				always_show = { -- List of specific files/folders to always show
-					".github",
-					".config",
-					-- Add other directories you want to show permanently
-				},
-			},
-		},
-	})
-	-- Neotree
+	local events = require("neo-tree.events")
 	require("neo-tree").setup({
 		filesystem = {
 			filtered_items = {
@@ -68,6 +63,20 @@ local setup_neotree = function()
 			follow_current_file = {
 				enabled = true,
 				leave_dirs_open = false,
+			},
+		},
+		event_handlers = {
+			{
+				event = events.FILE_MOVED,
+				handler = function(data)
+					Snacks.rename.on_rename_file(data.source, data.destination)
+				end,
+			},
+			{
+				event = events.FILE_RENAMED,
+				handler = function(data)
+					Snacks.rename.on_rename_file(data.source, data.destination)
+				end,
 			},
 		},
 	})

@@ -1,6 +1,5 @@
 local setup_trouble = function()
 	vim.keymap.set("n", "<leader>tX", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Trouble - All Diagnostics" })
-
 	vim.keymap.set(
 		"n",
 		"<leader>tb",
@@ -8,7 +7,7 @@ local setup_trouble = function()
 		{ desc = "Trouble - Buffer Diagnostics" }
 	)
 
-	vim.keymap.set("n", "<leader>ts", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
+	vim.keymap.set("n", "<leader>tS", "<CMD>Trouble symbols toggle focus=false<cr>", { desc = "Trouble - Symmbols" })
 
 	vim.keymap.set(
 		"n",
@@ -30,7 +29,7 @@ local setup_vim_diagnostics_keymaps = function()
 	vim.keymap.set("n", "<leader>c]", vim.diagnostic.goto_next, { desc = "LSP - Next diagnostic" })
 end
 
-local setup_telescope_diagnostics_keymaps = function()
+local setup_snacks_diagnostics_keymaps = function()
 	vim.keymap.set(
 		"n",
 		"<leader>tD",
@@ -41,7 +40,7 @@ end
 --- @class Diagnostics
 local M = {}
 M.setup = function(opts)
-	setup_telescope_diagnostics_keymaps()
+	-- setup_telescope_diagnostics_keymaps()
 	setup_trouble()
 	setup_vim_diagnostics_keymaps()
 end

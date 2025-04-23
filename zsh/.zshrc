@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(git aws zsh-fzf-history-search)
+plugins=(git aws)
 source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
@@ -13,13 +13,11 @@ source $ZSH/oh-my-zsh.sh
 
 #------------------------------------------------------------
 # ZSH custom
-alias ls=colorls
-alias vim=nvim
 export EDITOR=nvim
 neofetch
 
 # -------------- dotfiles install ---------------
-source /home/edmondo/dotfiles/.zshrc_imports
+source $HOME/Development/dotfiles/.zshrc_imports
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/edmondo/.sdkman"

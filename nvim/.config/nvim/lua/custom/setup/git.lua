@@ -52,6 +52,22 @@ end
 local setup_neogit = function()
 	local neogit = require("neogit")
 	neogit.setup({})
+	vim.keymap.set("n", "<leader>GN", "<CMD>Neogit<cr>", { desc = "Neogit" })
+end
+
+local setup_snacks_git_picker = function()
+	vim.keymap.set("n", "<leader>GB", function()
+		Snacks.picker.git_branches()
+	end, { desc = "Git branches" })
+	vim.keymap.set("n", "<leader>Gl", function()
+		Snacks.picker.git_log()
+	end, { desc = "Git log" })
+	vim.keymap.set("n", "<leader>Gf", function()
+		Snacks.picker.git_log_file()
+	end, { desc = "Git log file" })
+	vim.keymap.set("n", "<leader>Gd", function()
+		Snacks.picker.git_diff()
+	end, { desc = "Git list diffs" })
 end
 
 local M = {}
@@ -70,8 +86,8 @@ M.setup = function()
 			map(bufnr, "n", "<leader>Gtb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
 		end,
 	})
-	vim.keymap.set("n", "<leader>Gl", "<CMD>LazyGit<cr>", { desc = "LazyGit" })
 	setup_neogit()
+	setup_snacks_git_picker()
 end
 
 return M

@@ -81,12 +81,35 @@ end
 M.codecompanion_status = function()
 	return update_spinner()
 end
-
+local icons = {
+	idle = " ",
+	error = " ",
+	offline = " ",
+	warning = " ",
+	loading = " ",
+}
 M.copilot_status = function()
-	local ok, copilot_status = pcall(require, "copilot_status")
-	if not ok then
-		return "Copilot Status not available"
+	-- local ok, copilot_status = pcall(require, "copilot_status")
+	-- if not ok then
+	-- 	return "Copilot Status not available"
+	-- end
+	-- return copilot_status.status_string()
+	local agent = vim.g.loaded_copilot == 1 and vim.fn["copilot#RunningClient"]() or nil
+	if agent == nil then
+		return icons.offline
 	end
-	return copilot_status.status_string()
+	-- most of the time, requests is just empty dict.
+	if type(agent) == "table" then
+		local requests = agent.requests or {}
+
+		-- requests is dict with number as index, get status from those requests.
+		for _, req in pairs(requests) do
+			local req_status = req.status
+			if req_status == "running" then
+				return icons.idle
+			end
+		end
+		return icons.loading
+	end
 end
 return M

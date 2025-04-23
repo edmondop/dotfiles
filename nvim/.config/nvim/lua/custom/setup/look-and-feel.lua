@@ -35,9 +35,6 @@ local setup_catppuccin_theme = function()
 			},
 		},
 		integrations = {
-			telescope = {
-				enabled = true,
-			},
 			dropbar = {
 				enabled = true,
 				color_mode = true,
@@ -105,6 +102,7 @@ local setup_notifications = function()
 	vim.keymap.set("n", "<ESC>", notify.dismiss, { desc = "Dismiss notifications" })
 	notify.setup({
 		log_level = vim.log.levels.DEBUG,
+		background_colour = "#000000",
 	})
 end
 

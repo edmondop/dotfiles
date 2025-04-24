@@ -33,8 +33,6 @@ local setup_lsp_keymaps = function()
 			local bufnr = args.buf
 			local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
 
-			local builtin = require("telescope.builtin")
-
 			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code Action", buffer = bufnr })
@@ -53,54 +51,43 @@ local setup_lsp_keymaps = function()
 				{ desc = "LSP - Signature help", buffer = bufnr }
 			)
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP - Hover documentation" })
-			-- Navigation
-			vim.keymap.set(
-				"n",
-				"<leader>cd",
-				builtin.lsp_definitions,
-				{ desc = "LSP - Go to definition", buffer = bufnr }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>cD",
-				vim.lsp.buf.declaration,
-				{ desc = "LSP - Go to declaration", buffer = bufnr }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>ci",
-				vim.lsp.buf.implementation,
-				{ desc = "LSP - Go to implementation", buffer = bufnr }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>ct",
-				vim.lsp.buf.type_definition,
-				{ desc = "LSP - Go to type definition", buffer = bufnr }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>cr",
-				builtin.lsp_references,
-				{ desc = "LSP - Go to reference", buffer = bufnr }
-			)
+
+			vim.keymap.set("n", "<leader>cd", function()
+				Snacks.picker.lsp_definitions()
+			end, { desc = "LSP - Go to definitions", buffer = bufnr })
+
+			vim.keymap.set("n", "<leader>cD", function()
+				Snacks.picker.lsp_declarations()
+			end, { desc = "LSP - Go to declarations", buffer = bufnr })
+
+			vim.keymap.set("n", "<leader>ci", function()
+				Snacks.picker.lsp_implementations()
+			end, { desc = "LSP - Go to implementations", buffer = bufnr })
+
+			vim.keymap.set("n", "<leader>ct", function()
+				Snacks.picker.lsp_type_definitions()
+			end, { desc = "LSP - Go to type definition", buffer = bufnr })
+
+			vim.keymap.set("n", "<leader>cr", function()
+				vim.lsp.buf.rename()
+			end, { desc = "LSP - Rename Symbol", buffer = bufnr })
+
+			vim.keymap.set("n", "<leader>cR", function()
+				Snacks.picker.lsp_references()
+			end, { desc = "LSP - Go to reference", buffer = bufnr })
+
+			vim.keymap.set("n", "<leader>cS", function()
+				Snacks.picker.lsp_symbols()
+			end, { desc = "LSP Symbols", buffer = bufnr })
+
+			vim.keymap.set("n", "<leader>cW", function()
+				Snacks.picker.lsp_workspace_symbols()
+			end, { desc = "LSP Workspace Symbols", buffer = bufnr })
 
 			local filetype = vim.bo[bufnr].filetype
 			if disable_semantic_tokens[filetype] then
 				client.server_capabilities.semanticTokensProvider = nil
 			end
-
-			-- -- Override server capabilities
-			-- if settings.server_capabilities then
-			-- 	for k, v in pairs(settings.server_capabilities) do
-			-- 		if v == vim.NIL then
-			-- 			---@diagnostic disable-next-line: cast-local-type
-			-- 			v = nil
-			-- 		end
-			--
-			-- 		client.server_capabilities[k] = v
-			-- 	end
-			-- end
 		end,
 	})
 end

@@ -17,7 +17,11 @@ export EDITOR=nvim
 neofetch
 
 # -------------- dotfiles install ---------------
-source $HOME/Development/dotfiles/.zshrc_imports
+if [[ $(hostname) == edmondo-Laptop-13-AMD* ]]; then
+  source $HOME/Development/dotfiles/.zshrc_imports
+else
+  source $HOME/dotfiles/.zshrc_imports
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/edmondo/.sdkman"

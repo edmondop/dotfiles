@@ -43,9 +43,9 @@ return {
 				.. "/*.md",
 			"BufNewFile " .. vim.fn.expand("~/Documents/PersonalKnowledge") .. "/*.md",
 		},
-		{
-			"3rd/image.nvim",
-			opts = {},
-		},
+		-- {
+		-- 	"3rd/image.nvim",
+		-- 	build = false,
+		-- },
 	},
 }

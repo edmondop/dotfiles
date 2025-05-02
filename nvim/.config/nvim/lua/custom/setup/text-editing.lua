@@ -76,23 +76,24 @@ end
 
 local setup_images_rendering = function()
 	--- @diagnostic disable-next-line
-	require("image").setup({
-		integrations = {
-			markdown = {
-				enabled = true,
-				resolve_image_path = function(document_path, image_path, fallback)
-					local obsidian_client = require("obsidian").get_client()
-					local full_path = vault_img_folder .. "/" .. image_path
-					local new_image_path = obsidian_client:vault_relative_path(full_path).filename
-					if vim.fn.filereadable(new_image_path) == 1 then
-						return new_image_path
-					else
-						return fallback(document_path, image_path)
-					end
-				end,
-			},
-		},
-	})
+	-- require("image").setup({
+	-- 	processor = "magick_cli",
+	-- 	integrations = {
+	-- 		markdown = {
+	-- 			enabled = true,
+	-- 			resolve_image_path = function(document_path, image_path, fallback)
+	-- 				local obsidian_client = require("obsidian").get_client()
+	-- 				local full_path = vault_img_folder .. "/" .. image_path
+	-- 				local new_image_path = obsidian_client:vault_relative_path(full_path).filename
+	-- 				if vim.fn.filereadable(new_image_path) == 1 then
+	-- 					return new_image_path
+	-- 				else
+	-- 					return fallback(document_path, image_path)
+	-- 				end
+	-- 			end,
+	-- 		},
+	-- 	},
+	-- })
 end
 
 --- @class TextEditing

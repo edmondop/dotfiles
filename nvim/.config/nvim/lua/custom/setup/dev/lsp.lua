@@ -93,27 +93,14 @@ local setup_lsp_keymaps = function()
 end
 
 local setup_lsp_capabilities = function()
+	require("mason").setup({})
 	require("mason-lspconfig").setup({
+		automatic_installation = true,
 		ensure_installed = lsps,
-		handlers = {
-			["rust_analyzer"] = function()
-				-- For compatibility with rustaceanvim
-			end,
-			function(server_name)
-				local capabilities = vim.lsp.protocol.make_client_capabilities()
-				capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-				if server_name == "yamlls" then
-					capabilities.textDocument.foldingRange = {
-						dynamicRegistration = false,
-						lineFoldingOnly = true,
-					}
-				end
-				require("lspconfig")[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-		},
 	})
+	for _, lsp in ipairs(lsps) do
+		vim.lsp.enable(lsp)
+	end
 end
 
 local tools = {

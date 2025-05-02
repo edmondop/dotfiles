@@ -9,9 +9,6 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	{
-		"neovim/nvim-lspconfig",
-	},
-	{
 		"nvimtools/none-ls.nvim",
 	},
 	{

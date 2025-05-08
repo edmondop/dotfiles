@@ -3,6 +3,7 @@ local lsps = {
 	-- cannot be installed as lsp?
 	-- "bacon",
 	-- "bacon_ls",
+	"bzl",
 	"cucumber_language_server",
 	"graphql",
 	"gopls",

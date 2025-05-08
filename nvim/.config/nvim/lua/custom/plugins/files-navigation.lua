@@ -10,10 +10,6 @@ return {
 		},
 	},
 	{
-
-		"alexghergh/nvim-tmux-navigation",
-	},
-	{
 		"stevearc/oil.nvim",
 		opts = {},
 		dependencies = { "nvim-tree/nvim-web-devicons" },

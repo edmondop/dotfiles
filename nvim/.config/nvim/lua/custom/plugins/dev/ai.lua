@@ -25,6 +25,12 @@ return {
 	-- 	"Exafunction/codeium.vim",
 	-- 	event = "BufEnter",
 	-- },
+	--
+	{
+		"Davidyz/VectorCode",
+		version = "*",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {

@@ -20,8 +20,8 @@ end
 local setup_resize_keymaps = function()
 	vim.keymap.set("n", "<C-S-Down>", ":resize +2<CR>", { desc = "Resize Horizontal Split Down" })
 	vim.keymap.set("n", "<C-S-Up>", ":resize -2<CR>", { desc = "Resize Horizontal Split Up" })
-	vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Resize Vertical Split Down" })
-	vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Resize Vertical Split Up" })
+	vim.keymap.set("n", "<C-S-Left>", ":vertical resize -2<CR>", { desc = "Resize Vertical Split Down" })
+	vim.keymap.set("n", "<C-S-Right>", ":vertical resize +2<CR>", { desc = "Resize Vertical Split Up" })
 end
 
 local setup_navigation_keymaps = function()
@@ -67,7 +67,7 @@ local setup_which_key = function()
 		{ "<leader>s", group = "Swap" },
 		{ "<leader>S", group = "Substitute" },
 		{ "<leader>T", group = "Tabs" },
-		{ "<leader>t", group = "Tests/Troubles" },
+		{ "<leader>t", group = "Tests/Troubles/Tmux" },
 		{ "<leader>y", group = "Yanking" },
 		{ "<leader>w", group = "Windows/Sessions" },
 		{ "<leader>z", group = "Zenmode/Twlight" },
@@ -95,14 +95,6 @@ local setup_task_warrior = function()
 	vim.api.nvim_set_keymap("n", "<leader>Tw", "<CMD>TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
 end
 
-local setup_tmux_navigation = function()
-	require("nvim-tmux-navigation").setup({})
-	vim.keymap.set("n", "<C-h>", "<CMD>NvimTmuxNavigateLeft<CR>")
-	vim.keymap.set("n", "<C-j>", "<CMD>NvimTmuxNavigateDown<CR>")
-	vim.keymap.set("n", "<C-k>", "<CMD>NvimTmuxNavigateUp<CR>")
-	vim.keymap.set("n", "<C-l>", "<CMD>NvimTmuxNavigateRight<CR>")
-end
-
 --- @class Productivity
 local M = {}
 M.setup = function(opts)
@@ -120,7 +112,6 @@ M.setup = function(opts)
 	setup_split_keymaps()
 	setup_tabs_keymaps()
 	setup_task_warrior()
-	setup_tmux_navigation()
 	setup_which_key()
 end
 return M

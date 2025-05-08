@@ -11,6 +11,7 @@ M.setup = function(opts)
 	require("custom.setup.snacks").setup(opts)
 	require("custom.setup.telescope").setup(opts)
 	require("custom.setup.text-editing").setup(opts)
+	require("custom.setup.tmux").setup(opts)
 end
 
 return M

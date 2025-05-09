@@ -2,3 +2,5 @@
 .zshrc_imports
 .aider*
 .env
+tmux/.tmux/plugins
+tmux/.tmuxifier

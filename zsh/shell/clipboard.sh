@@ -15,12 +15,10 @@ copy() {
             # Use xclip if running on X11
             xclip -selection clipboard
         else
-            if ! command -v it2copy &>/dev/null; then
-                echo "Error: it2copy is not available ." >&2
+            it2copy || {
+                echo "Error: it2copy is not working or not available." >&2
                 return 1
-            fi
-            # Use it2copy, assuming this is is an iTerm2 remote ssh session
-            it2copy
+            }
         fi
     fi
 }

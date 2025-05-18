@@ -9,3 +9,5 @@ else
 fi
 
 eval "$(direnv hook zsh)"
+
+export MANPAGER="nvim +Man!"

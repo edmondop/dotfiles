@@ -7,7 +7,7 @@ local lsps = {
 	"cucumber_language_server",
 	"graphql",
 	"gopls",
-	"jdtls",
+	-- 	"jdtls",
 	"jsonls",
 	"lua_ls",
 	-- "nil_ls", -- This will be conditionally added
@@ -136,7 +136,7 @@ end
 local M = {}
 M.setup = function(opts)
 	-- Orphan java, didn't know where to put it
-	require("java").setup()
+	-- require("java").setup()
 	setup_lsp_keymaps()
 	setup_non_lsp_sources()
 	setup_lsp_capabilities()

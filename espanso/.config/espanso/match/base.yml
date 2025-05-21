@@ -64,3 +64,15 @@ matches:
       as each engineer, I have gaps and I am asking your help to learn.
       I want you to be really concise, and really go deep. Cut the fluff.
       Provide examples, if applicable, code examples. Compare and contrast.
+
+  - trigger: ":well-written-unit-tests"
+    replace: |
+      Please remember these best practices when writing unit tests:
+      - We never test private methods, for example _underscore() methods in Python
+      - A test case should only test one behavior, it's ok to have two or three assertions call, but beyond that, it's probably two
+      test cases that are needed. You can create helper function for repeated assertion (i.e. def assert_money_is_received(amount) )
+      - If test cases share part of their arrange or act section, you can factor them out in a common helper method.
+      - I want you to use the AAA pattern (Arrange, Act, Assert) for the test cases.
+      - I want you to avoid any code comments, the code should be self commenting
+      - I also want you to apply best practices such as equivalence partitioning, boundary value analysis, state machine testing,
+      decision table testing, error guessing, to derive the necessary test cases.

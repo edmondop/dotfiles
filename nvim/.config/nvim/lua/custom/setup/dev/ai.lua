@@ -1,5 +1,5 @@
 local setup_codecompanion = function()
-	require("vectorcode").setup({})
+	-- require("vectorcode").setup({})
 	require("codecompanion").setup({
 		strategies = {
 			chat = {
@@ -10,9 +10,9 @@ local setup_codecompanion = function()
 			},
 		},
 		extensions = {
-			vectorcode = {
-				opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
-			},
+			-- vectorcode = {
+			-- 	opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
+			-- },
 		},
 	})
 end

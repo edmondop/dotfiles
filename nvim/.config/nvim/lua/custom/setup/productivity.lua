@@ -55,7 +55,7 @@ local setup_harpoon = function()
 end
 
 local setup_toggleterm = function()
-	require("toggleterm").setup({})
+	eequire("toggleterm").setup({})
 end
 
 local setup_which_key = function()
@@ -66,6 +66,7 @@ local setup_which_key = function()
 		{ "<leader>d", group = "Debug" },
 		{ "<leader>e", group = "Edit config/plugins" },
 		{ "<leader>f", group = "Find" },
+		{ "<leader>F", group = "Flash" },
 		{ "<leader>G", group = "Git" },
 		{ "<leader>h", group = "Harpoon" },
 		{ "<leader>s", group = "Substitute" },

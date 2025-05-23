@@ -95,17 +95,36 @@ local setup_images_rendering = function()
 	-- 	},
 	-- })
 end
-
+local setup_flash = function()
+	require("flash").setup({
+		modes = {
+			search = {
+				enabled = false,
+			},
+			char = {
+				enabled = false,
+			},
+			treesitter = {
+				enabled = false,
+			},
+		},
+	})
+	vim.keymap.set("n", "<leader>F", function()
+		require("flash").jump()
+	end, { desc = "Flash - Jump" })
+end
 --- @class TextEditing
 local M = {}
 M.setup = function(opts)
 	vim.g["pencil#conceallevel"] = 1
 	setup_substitute_keymaps()
+	setup_flash()
 	setup_folding(opts)
 	setup_images_rendering()
 	setup_markdown_capabilities()
 	setup_distractionfree_editing()
 	setup_obsidian_editing()
+
 	-- Extension for telescope :Telescope neoclip
 	require("neoclip").setup({
 		enable_persistent_history = true,

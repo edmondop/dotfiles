@@ -47,5 +47,9 @@ return {
 		-- 	"3rd/image.nvim",
 		-- 	build = false,
 		-- },
+		{
+			"folke/flash.nvim",
+			event = "VeryLazy",
+		},
 	},
 }

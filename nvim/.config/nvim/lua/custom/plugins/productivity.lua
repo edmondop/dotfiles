@@ -13,4 +13,7 @@ return {
 		dependencies = { "MunifTanjim/nui.nvim" },
 		-- opts = {},
 	},
+	{
+		"akinsho/toggleterm.nvim",
+	},
 }

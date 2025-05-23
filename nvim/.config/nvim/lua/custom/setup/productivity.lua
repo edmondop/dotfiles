@@ -54,6 +54,10 @@ local setup_harpoon = function()
 	vim.keymap.set("n", "<leader>hl", ":Telescope harpoon marks<CR>", { desc = "List all Harpoon marks" })
 end
 
+local setup_toggleterm = function()
+	require("toggleterm").setup({})
+end
+
 local setup_which_key = function()
 	local wk = require("which-key")
 	wk.setup({})
@@ -112,6 +116,7 @@ M.setup = function(opts)
 	setup_split_keymaps()
 	setup_tabs_keymaps()
 	setup_task_warrior()
+	setup_toggleterm()
 	setup_which_key()
 end
 return M

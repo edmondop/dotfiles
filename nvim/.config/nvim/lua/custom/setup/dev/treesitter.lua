@@ -57,12 +57,12 @@ local select_keymaps = {
 
 local swap_keymaps = {
 	swap_next = {
-		["<leader>sna"] = "@parameter.inner", -- swap parameters/argument with next
-		["<leader>snm"] = "@function.outer", -- swap function with next
+		["<leader>Sna"] = "@parameter.inner", -- swap parameters/argument with next
+		["<leader>Snm"] = "@function.outer", -- swap function with next
 	},
-	swap_previous = {
-		["<leader>spa"] = "@parameter.inner", -- swap parameters/argument with prev
-		["<leader>spm"] = "@function.outer", -- swap function with previous
+	Swap_previous = {
+		["<leader>Spa"] = "@parameter.inner", -- swap parameters/argument with prev
+		["<leader>Spm"] = "@function.outer", -- swap function with previous
 	},
 }
 

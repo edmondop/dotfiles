@@ -55,7 +55,7 @@ local setup_harpoon = function()
 end
 
 local setup_toggleterm = function()
-	eequire("toggleterm").setup({})
+	require("toggleterm").setup({})
 end
 
 local setup_which_key = function()

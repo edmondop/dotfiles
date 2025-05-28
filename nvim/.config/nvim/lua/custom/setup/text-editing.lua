@@ -47,7 +47,16 @@ local setup_distractionfree_editing = function()
 end
 
 local pkmg_path = "~/Documents/PersonalKnowledge"
-local vault_img_folder = "Assets/Attachments"
+
+local setup_task_warrior = function()
+	local taskwarrior = require("taskwarrior_nvim")
+	taskwarrior.setup({})
+	vim.api.nvim_create_user_command("TaskWarriorList", function()
+		taskwarrior.browser({ "ready" })
+	end, {})
+	-- Map the function to a keybinding
+	vim.api.nvim_set_keymap("n", "<leader>Tw", "<CMD>TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
+end
 
 local setup_obsidian_editing = function()
 	local uv = vim.loop -- Use Neovim's libuv wrapper to check file system
@@ -131,7 +140,7 @@ M.setup = function(opts)
 	})
 	-- Additional surround (add with sa,
 	-- replace with sr, find with sf,etc)
-	require("mini.surround").setup({})
+	-- require("mini.surround").setup({})
 	require("mini.cursorword").setup()
 end
 

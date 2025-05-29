@@ -24,23 +24,25 @@ local setup_trouble = function()
 end
 
 local setup_vim_diagnostics_keymaps = function()
+	local go_to_diagnotics = function(direction)
+		return function()
+			vim.diagnostic.jump({ count = direction, float = true })
+		end
+	end
 	vim.keymap.set("n", "<leader>cl", vim.diagnostic.open_float, { desc = "LSP - Show diagnostic" })
-	vim.keymap.set("n", "<leader>c[", vim.diagnostic.goto_prev, { desc = "LSP - Previous diagnostic" })
-	vim.keymap.set("n", "<leader>c]", vim.diagnostic.goto_next, { desc = "LSP - Next diagnostic" })
+	vim.keymap.set("n", "<leader>c[", go_to_diagnotics(-1), { desc = "LSP - Previous diagnostic" })
+	vim.keymap.set("n", "<leader>c]", go_to_diagnotics(1), { desc = "LSP - Next diagnostic" })
 end
 
 local setup_snacks_diagnostics_keymaps = function()
-	vim.keymap.set(
-		"n",
-		"<leader>tD",
-		"<CMD>Telescope diagnostics bufnr=0 wrap_results=true<CR>",
-		{ desc = "Telescope: Show buffer diagnostics" }
-	)
+	vim.keymap.set("n", "<leader>tD", function()
+		Snacks.picker.diagnostics_buffer()
+	end, { desc = "Snacks: Show buffer diagnostics" })
 end
 --- @class Diagnostics
 local M = {}
 M.setup = function(opts)
-	-- setup_telescope_diagnostics_keymaps()
+	setup_snacks_diagnostics_keymaps()
 	setup_trouble()
 	setup_vim_diagnostics_keymaps()
 end

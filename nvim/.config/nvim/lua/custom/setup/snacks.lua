@@ -77,6 +77,13 @@ local setup_keymaps_pickers = function()
 		Snacks.picker.keymaps()
 	end, { desc = "Keymaps" })
 end
+
+local setup_diagnostics_pickers = function()
+	vim.keymap.set("n", "<leader>fd", function()
+		Snacks.picker.diagnostics()
+	end, { desc = "Diagnostics" })
+end
+
 local M = {}
 M.setup = function(opts)
 	opts = opts or {}
@@ -90,6 +97,7 @@ M.setup = function(opts)
 		},
 	})
 	setup_buffer_pickers(opts)
+	setup_diagnostics_pickers(opts)
 	setup_file_pickers(opts)
 	setup_help_pickers(opts)
 	setup_history_pickers(opts)

@@ -4,9 +4,11 @@ local setup_codecompanion = function()
 		strategies = {
 			chat = {
 				adapter = "copilot",
+				model = "claude-sonnet-4",
 			},
 			inline = {
 				adapter = "copilot",
+				model = "claude-sonnet-4",
 			},
 		},
 		extensions = {

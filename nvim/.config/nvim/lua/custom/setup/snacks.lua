@@ -79,6 +79,16 @@ local setup_keymaps_pickers = function()
 end
 local M = {}
 M.setup = function(opts)
+	opts = opts or {}
+	require("snacks").setup({
+		picker = {
+			sources = {
+				grep = {
+					hidden = true, -- This becomes part of `opts` in the grep finder
+				},
+			},
+		},
+	})
 	setup_buffer_pickers(opts)
 	setup_file_pickers(opts)
 	setup_help_pickers(opts)

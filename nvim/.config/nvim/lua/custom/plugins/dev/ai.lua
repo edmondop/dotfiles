@@ -26,16 +26,17 @@ return {
 	-- 	event = "BufEnter",
 	-- },
 	--
-	{
-		"Davidyz/VectorCode",
-		version = "*",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
+	-- {
+	-- 	"Davidyz/VectorCode",
+	-- 	version = "*",
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- },
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"ravitemer/codecompanion-history.nvim",
 		},
 		config = true,
 	},

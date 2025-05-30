@@ -44,7 +44,7 @@ local setup_neotree = function()
 		filesystem = {
 			filtered_items = {
 				visible = true,
-				hide_dotfiles = true,
+				hide_dotfiles = false,
 				hide_gitignored = false,
 				always_show = {
 					".github",

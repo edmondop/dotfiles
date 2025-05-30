@@ -54,6 +54,10 @@ local setup_harpoon = function()
 	vim.keymap.set("n", "<leader>hl", ":Telescope harpoon marks<CR>", { desc = "List all Harpoon marks" })
 end
 
+local setup_toggleterm = function()
+	require("toggleterm").setup({})
+end
+
 local setup_which_key = function()
 	local wk = require("which-key")
 	wk.setup({})
@@ -62,10 +66,11 @@ local setup_which_key = function()
 		{ "<leader>d", group = "Debug" },
 		{ "<leader>e", group = "Edit config/plugins" },
 		{ "<leader>f", group = "Find" },
+		{ "<leader>F", group = "Flash" },
 		{ "<leader>G", group = "Git" },
 		{ "<leader>h", group = "Harpoon" },
-		{ "<leader>s", group = "Swap" },
-		{ "<leader>S", group = "Substitute" },
+		{ "<leader>s", group = "Substitute" },
+		{ "<leader>S", group = "Swap" },
 		{ "<leader>T", group = "Tabs" },
 		{ "<leader>t", group = "Tests/Troubles/Tmux" },
 		{ "<leader>y", group = "Yanking" },
@@ -112,6 +117,7 @@ M.setup = function(opts)
 	setup_split_keymaps()
 	setup_tabs_keymaps()
 	setup_task_warrior()
+	setup_toggleterm()
 	setup_which_key()
 end
 return M

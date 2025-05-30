@@ -29,14 +29,14 @@ end
 local setup_substitute_keymaps = function()
 	local substitute = require("substitute")
 	substitute.setup()
-	vim.keymap.set("n", "S", substitute.operator, { desc = "Substitute with motion" })
-	vim.keymap.set("n", "SS", substitute.line, { desc = "Substitute line" })
+	vim.keymap.set("n", "s", substitute.operator, { desc = "Substitute with motion" })
+	vim.keymap.set("n", "ss", substitute.line, { desc = "Substitute line" })
 	-- vim.keymap.set("n", "S", substitute.eol, { desc = "Substitute to end of line" })
-	vim.keymap.set("x", "S", substitute.visual, { desc = "Substitute in visual mode" })
+	vim.keymap.set("x", "s", substitute.visual, { desc = "Substitute in visual mode" })
 	local substitute_range = require("substitute.range")
-	vim.keymap.set("n", "<leader>S", substitute_range.operator, { desc = "Substitute range" })
-	vim.keymap.set("x", "<leader>S", substitute_range.visual, { desc = "Substitute range" })
-	vim.keymap.set("n", "<leader>SS", substitute_range.word, { desc = "Substitute range in current word" })
+	vim.keymap.set("n", "<leader>s", substitute_range.operator, { desc = "Substitute range" })
+	vim.keymap.set("x", "<leader>s", substitute_range.visual, { desc = "Substitute range" })
+	vim.keymap.set("n", "<leader>ss", substitute_range.word, { desc = "Substitute range in current word" })
 end
 
 local setup_distractionfree_editing = function()
@@ -47,7 +47,16 @@ local setup_distractionfree_editing = function()
 end
 
 local pkmg_path = "~/Documents/PersonalKnowledge"
-local vault_img_folder = "Assets/Attachments"
+
+local setup_task_warrior = function()
+	local taskwarrior = require("taskwarrior_nvim")
+	taskwarrior.setup({})
+	vim.api.nvim_create_user_command("TaskWarriorList", function()
+		taskwarrior.browser({ "ready" })
+	end, {})
+	-- Map the function to a keybinding
+	vim.api.nvim_set_keymap("n", "<leader>Tw", "<CMD>TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
+end
 
 local setup_obsidian_editing = function()
 	local uv = vim.loop -- Use Neovim's libuv wrapper to check file system
@@ -95,24 +104,43 @@ local setup_images_rendering = function()
 	-- 	},
 	-- })
 end
-
+local setup_flash = function()
+	require("flash").setup({
+		modes = {
+			search = {
+				enabled = false,
+			},
+			char = {
+				enabled = false,
+			},
+			treesitter = {
+				enabled = false,
+			},
+		},
+	})
+	vim.keymap.set("n", "<leader>F", function()
+		require("flash").jump()
+	end, { desc = "Flash - Jump" })
+end
 --- @class TextEditing
 local M = {}
 M.setup = function(opts)
 	vim.g["pencil#conceallevel"] = 1
 	setup_substitute_keymaps()
+	setup_flash()
 	setup_folding(opts)
 	setup_images_rendering()
 	setup_markdown_capabilities()
 	setup_distractionfree_editing()
 	setup_obsidian_editing()
+
 	-- Extension for telescope :Telescope neoclip
 	require("neoclip").setup({
 		enable_persistent_history = true,
 	})
 	-- Additional surround (add with sa,
 	-- replace with sr, find with sf,etc)
-	require("mini.surround").setup({})
+	-- require("mini.surround").setup({})
 	require("mini.cursorword").setup()
 end
 

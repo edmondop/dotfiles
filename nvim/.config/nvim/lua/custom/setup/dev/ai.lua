@@ -1,17 +1,40 @@
 local setup_codecompanion = function()
-	require("vectorcode").setup({})
+	-- require("vectorcode").setup({})
 	require("codecompanion").setup({
 		strategies = {
 			chat = {
 				adapter = "copilot",
+				model = "claude-sonnet-4",
 			},
 			inline = {
 				adapter = "copilot",
+				model = "claude-sonnet-4",
 			},
 		},
 		extensions = {
-			vectorcode = {
-				opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
+			history = {
+				enabled = true,
+				opts = {
+					keymap = "gh",
+					save_chat_keymap = "sc",
+					auto_save = true,
+					expiration_days = 0,
+					picker = "snacks", --- ("telescope", "snacks", "fzf-lua", or "default")
+					auto_generate_title = true,
+					title_generation_opts = {
+						---Adapter for generating titles (defaults to current chat adapter)
+						adapter = "copilot", -- "copilot"
+						---Model for generating titles (defaults to current chat model)
+						model = nil, -- "gpt-4o"
+					},
+					---On exiting and entering neovim, loads the last chat on opening chat
+					continue_last_chat = false,
+					---When chat is cleared with `gx` delete the chat from history
+					delete_on_clearing_chat = false,
+					dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+					---Enable detailed logging for history extension
+					enable_logging = false,
+				},
 			},
 		},
 	})

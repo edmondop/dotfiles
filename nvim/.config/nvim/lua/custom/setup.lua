@@ -4,7 +4,8 @@ local M = {}
 M.setup = function(opts)
 	opts = opts or {}
 	require("custom.setup.dev").setup(opts)
-	require("custom.setup.file-browsing").setup(opts)
+	require("custom.setup.files-history").setup(opts)
+	require("custom.setup.files-navigation").setup(opts)
 	require("custom.setup.git").setup(opts)
 	require("custom.setup.look-and-feel").setup(opts)
 	require("custom.setup.productivity").setup(opts)

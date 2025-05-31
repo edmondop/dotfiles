@@ -14,7 +14,7 @@ source $ZSH/oh-my-zsh.sh
 #------------------------------------------------------------
 # ZSH custom
 export EDITOR=nvim
-neofetch
+fastfetch
 
 # -------------- dotfiles install ---------------
 if [[ $(hostname) == edmondo-Laptop-13-AMD* ]]; then

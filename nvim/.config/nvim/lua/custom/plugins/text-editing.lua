@@ -47,9 +47,13 @@ return {
 		-- 	"3rd/image.nvim",
 		-- 	build = false,
 		-- },
-		{
-			"folke/flash.nvim",
-			event = "VeryLazy",
-		},
+	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+	},
+	{
+		"jake-stewart/multicursor.nvim",
+		branch = "1.0",
 	},
 }

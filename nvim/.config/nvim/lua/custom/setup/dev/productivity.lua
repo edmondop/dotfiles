@@ -33,11 +33,16 @@ local setup_aerial = function()
 	vim.keymap.set("n", "<leader>A", "<CMD>AerialToggle!<CR>")
 end
 
+local setup_rainbow_delimiters = function()
+	require("rainbow-delimiters.setup").setup({})
+end
+
 --- @class Productivity
 local M = {}
 M.setup = function()
 	setup_aerial()
 	setup_comments_extensions()
 	setup_indent_guides()
+	setup_rainbow_delimiters()
 end
 return M

@@ -34,4 +34,7 @@ return {
 		},
 		config = true,
 	},
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+  }
 }

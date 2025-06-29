@@ -5,6 +5,16 @@ return {
 		lazy = false,
 	},
 	{ "mfussenegger/nvim-dap-python" },
+	{
+		"alexpasmantier/pymple.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			-- optional (nicer ui)
+			"stevearc/dressing.nvim",
+		},
+		build = "PympleBuild",
+	},
 	{ "nvim-java/nvim-java" },
 	{
 		"PedramNavid/dbtpal",

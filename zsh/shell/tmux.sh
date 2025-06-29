@@ -14,6 +14,7 @@ fix_ssh_agent_forwarding() {
     ssh-add -l 1>/dev/null 2>/dev/null
     if [[ "$?" != "0" ]]; then
         local socket=$(find /tmp/ssh-**/agent.* | head -n1)
+        echo "SSH agent socket found: $socket"
         update_symlink_and_export "$socket"
     fi
 }

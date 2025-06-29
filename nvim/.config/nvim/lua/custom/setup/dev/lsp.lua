@@ -4,6 +4,7 @@ local lsps = {
 	-- "bacon",
 	-- "bacon_ls",
 	"bzl",
+	"basedpyright",
 	"cucumber_language_server",
 	"graphql",
 	"gopls",
@@ -11,7 +12,7 @@ local lsps = {
 	"jsonls",
 	"lua_ls",
 	-- "nil_ls", -- This will be conditionally added
-	"pyright",
+	-- "pylsp",
 	"ruff",
 	"rust_analyzer",
 	"sqlls",
@@ -99,6 +100,43 @@ local setup_lsp_capabilities = function()
 		automatic_installation = true,
 		ensure_installed = lsps,
 	})
+	vim.lsp.config["basedpyright"] = {
+		root_markers = { "pyrightconfig.json", "pyproject.toml", "setup.py", ".git" },
+	}
+	-- vim.lsp.config["pylsp"] = {
+	-- 	root_markers = { "pyproject.toml", "setup.py", ".git" },
+	-- 	settings = {
+	-- 		pylsp = {
+	-- 			plugins = {
+	--
+	-- 				-- Only enable pylsp-rope
+	-- 				pylsp_rope = { enabled = true },
+	--
+	-- 				-- Disable everything else
+	-- 				jedi_completion = { enabled = false },
+	-- 				jedi_hover = { enabled = false },
+	-- 				jedi_references = { enabled = false },
+	-- 				jedi_signature_help = { enabled = false },
+	-- 				jedi_symbols = { enabled = false },
+	-- 				jedi_rename = { enabled = false },
+	-- 				rope_completion = { enabled = false },
+	-- 				rope_rename = { enabled = false },
+	-- 				pyflakes = { enabled = false },
+	-- 				mccabe = { enabled = false },
+	-- 				preload = { enabled = false },
+	-- 				yapf = { enabled = false },
+	-- 				black = { enabled = false },
+	-- 				autopep8 = { enabled = false },
+	-- 				flake8 = { enabled = false },
+	-- 				pydocstyle = { enabled = false },
+	-- 				pylint = { enabled = false },
+	-- 				isort = { enabled = false },
+	-- 				mypy = { enabled = false },
+	-- 				pycodestyle = { enabled = false },
+	-- 			},
+	-- 		},
+	-- 	},
+	-- }
 	for _, lsp in ipairs(lsps) do
 		vim.lsp.enable(lsp)
 	end
@@ -132,6 +170,13 @@ local setup_non_lsp_sources = function()
 	null_ls.setup({ sources = sources, debug = true })
 end
 
+local setup_inline_filler = function()
+	local inlayhint_filler = require("inlayhint-filler")
+	inlayhint_filler.setup({})
+	vim.keymap.set("n", "<leader>ci", function()
+		inlayhint_filler.fill()
+	end, { desc = "LSP: Inlay Hints" })
+end
 --- @class LSP
 local M = {}
 M.setup = function(opts)
@@ -140,5 +185,6 @@ M.setup = function(opts)
 	setup_lsp_keymaps()
 	setup_non_lsp_sources()
 	setup_lsp_capabilities()
+	setup_inline_filler()
 end
 return M

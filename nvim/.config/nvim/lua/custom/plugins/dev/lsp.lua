@@ -28,4 +28,7 @@ return {
 		event = "LspAttach",
 		opts = {}, -- required, even if empty
 	},
+	{
+		"Davidyz/inlayhint-filler.nvim",
+	},
 }

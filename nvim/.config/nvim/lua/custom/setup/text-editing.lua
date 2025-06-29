@@ -202,7 +202,8 @@ M.setup = function(opts)
 	setup_markdown_capabilities()
 	setup_distractionfree_editing()
 	setup_obsidian_editing()
-	setup_multicursor()
+	-- TODO: review multi-cursor
+	-- setup_multicursor()
 
 	-- Extension for telescope :Telescope neoclip
 	require("neoclip").setup({

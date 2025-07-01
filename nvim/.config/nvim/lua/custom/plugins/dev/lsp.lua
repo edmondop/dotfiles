@@ -31,4 +31,8 @@ return {
 	{
 		"Davidyz/inlayhint-filler.nvim",
 	},
+	{
+		"rachartier/tiny-code-action.nvim",
+		event = "LspAttach",
+	},
 }

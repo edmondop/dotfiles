@@ -36,6 +36,16 @@ local setup_oil = function()
 			end
 		end,
 	})
+	require("oil-git").setup({
+		highlights = {
+			OilGitAdded = { fg = "#a6e3a1" },
+			OilGitModified = { fg = "#f9e2af" },
+			OilGitDeleted = { fg = "#f38ba8" },
+			OilGitRenamed = { fg = "#cba6f7" },
+			OilGitUntracked = { fg = "#89b4fa" },
+			OilGitIgnored = { fg = "#6c7086" },
+		},
+	})
 end
 
 local setup_neotree = function()

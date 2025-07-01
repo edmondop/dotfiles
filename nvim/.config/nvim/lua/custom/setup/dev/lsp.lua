@@ -37,7 +37,10 @@ local setup_lsp_keymaps = function()
 
 			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code Action", buffer = bufnr })
+			vim.keymap.set("n", "<leader>ca", function()
+				require("tiny-code-action").code_action()
+			end, { desc = "LSP - Code Action", buffer = bufnr })
+
 			vim.keymap.set("v", "<leader>ca", function()
 				if vim.lsp.buf.range_code_action then
 					vim.lsp.buf.range_code_action()
@@ -101,7 +104,7 @@ local setup_lsp_capabilities = function()
 		ensure_installed = lsps,
 	})
 	vim.lsp.config["basedpyright"] = {
-		root_markers = { "pyrightconfig.json", "pyproject.toml", "setup.py", ".git" },
+		root_markers = { "pyrightconfig.json", "setup.py", ".git" },
 	}
 	-- vim.lsp.config["pylsp"] = {
 	-- 	root_markers = { "pyproject.toml", "setup.py", ".git" },
@@ -177,11 +180,18 @@ local setup_inline_filler = function()
 		inlayhint_filler.fill()
 	end, { desc = "LSP: Inlay Hints" })
 end
+local setup_tiny_codeaction = function()
+	require("tiny-code-action").setup({
+		backend = "delta",
+		picker = "snacks",
+	})
+end
 --- @class LSP
 local M = {}
 M.setup = function(opts)
 	-- Orphan java, didn't know where to put it
 	-- require("java").setup()
+	setup_tiny_codeaction()
 	setup_lsp_keymaps()
 	setup_non_lsp_sources()
 	setup_lsp_capabilities()

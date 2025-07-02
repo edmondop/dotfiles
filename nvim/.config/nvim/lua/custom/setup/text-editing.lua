@@ -24,6 +24,10 @@ local setup_markdown_capabilities = function()
 			vim.fn["pencil#init"]()
 		end,
 	})
+	require("render-markdown").setup({
+		completions = { lsp = { enabled = true } },
+		blink = { enabled = true },
+	})
 end
 
 local setup_substitute_keymaps = function()
@@ -200,6 +204,7 @@ M.setup = function(opts)
 	setup_folding(opts)
 	setup_images_rendering()
 	setup_markdown_capabilities()
+
 	setup_distractionfree_editing()
 	setup_obsidian_editing()
 	-- TODO: review multi-cursor

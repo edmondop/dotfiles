@@ -15,10 +15,6 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
-		"benomahony/oil-git.nvim",
-		dependencies = { "stevearc/oil.nvim" },
-	},
-	{
 		"szw/vim-maximizer",
 	},
 	{

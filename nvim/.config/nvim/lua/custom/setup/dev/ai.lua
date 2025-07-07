@@ -3,12 +3,16 @@ local setup_codecompanion = function()
 	require("codecompanion").setup({
 		strategies = {
 			chat = {
-				adapter = "copilot",
-				model = "claude-sonnet-4",
+				adapter = {
+					name = "copilot",
+					model = "claude-sonnet-4",
+				},
 			},
 			inline = {
-				adapter = "copilot",
-				model = "claude-sonnet-4",
+				adapter = {
+					name = "copilot",
+					model = "claude-sonnet-4",
+				},
 			},
 		},
 		extensions = {
@@ -103,8 +107,9 @@ end
 --- @class AI
 local M = {}
 M.setup = function(opts)
-	setup_copilot({})
-	require("CopilotChat").setup({})
+	setup_copilot({
+		copilot_model = "claude-sonnet-4",
+	})
 	setup_codecompanion()
 end
 M.codecompanion_status = function()

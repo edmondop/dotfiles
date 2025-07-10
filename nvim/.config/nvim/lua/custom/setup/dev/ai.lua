@@ -95,13 +95,13 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
 function setup_copilot()
 	require("copilot").setup({
-		-- suggestions = { enabled = false },
-		-- panel = { enabled = false },
+		suggestions = { enabled = true, auto_trigger = true },
 		filetypes = {
 			yaml = true,
 		},
 	})
-	require("copilot_cmp").setup({})
+
+	-- require("copilot_cmp").setup({})
 end
 
 --- @class AI

@@ -4,10 +4,10 @@ return {
 		cmd = "Copilot",
 		event = "InsertEnter",
 	},
-	{
-		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua" },
-	},
+	-- {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	after = { "copilot.lua" },
+	-- },
 	{
 		"jonahgoldwastaken/copilot-status.nvim",
 		dependencies = { "zbirenbaum/copilot.lua" },
@@ -32,7 +32,7 @@ return {
 		},
 		config = true,
 	},
-	{
-		"augmentcode/augment.vim",
-	},
+	-- {
+	-- 	"augmentcode/augment.vim",
+	-- },
 }

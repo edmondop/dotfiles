@@ -13,9 +13,13 @@ lspkind.init({
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 local setup_blink = function()
 	blink.setup({
-		keymap = { preset = "enter" },
+		keymap = {
+			preset = "enter",
+			["K"] = { "show_documentation" },
+			["q"] = { "hide_documentation" },
+		},
 		sources = {
-			default = { "copilot" },
+			default = { "lsp", "path", "buffer", "copilot", "snippets" },
 			providers = {
 				copilot = {
 					name = "copilot",
@@ -25,23 +29,8 @@ local setup_blink = function()
 				},
 			},
 		},
+		completion = {},
 	})
-end
-
-local setup_cmdline_extension = function()
-	-- Setup for searching ("/") and command-line (":")
-	-- blink.setup.cmdline("/", {
-	-- 	mapping = blink.mapping.preset.cmdline(),
-	-- 	sources = { { name = "buffer" } },
-	-- })
-	--
-	-- blink.setup.cmdline(":", {
-	-- 	mapping = blink.mapping.preset.cmdline(),
-	-- 	sources = {
-	-- 		{ name = "path" },
-	-- 		{ name = "cmdline", option = { ignore_cmds = { "Man", "!" } } },
-	-- 	},
-	-- })
 end
 
 local setup_cmd_sql = function()
@@ -57,7 +46,6 @@ end
 local M = {}
 M.setup = function(opts)
 	setup_blink()
-	setup_cmdline_extension()
 
 	setup_cmd_sql()
 end

@@ -123,27 +123,48 @@ local icons = {
 	loading = " ",
 }
 M.copilot_status = function()
-	-- local ok, copilot_status = pcall(require, "copilot_status")
-	-- if not ok then
-	-- 	return "Copilot Status not available"
-	-- end
-	-- return copilot_status.status_string()
-	local agent = vim.g.loaded_copilot == 1 and vim.fn["copilot#RunningClient"]() or nil
-	if agent == nil then
+	if not package.loaded["copilot"] then
 		return icons.offline
 	end
-	-- most of the time, requests is just empty dict.
-	if type(agent) == "table" then
-		local requests = agent.requests or {}
 
-		-- requests is dict with number as index, get status from those requests.
-		for _, req in pairs(requests) do
-			local req_status = req.status
-			if req_status == "running" then
-				return icons.idle
-			end
-		end
-		return icons.loading
+	-- 2. Grab the status table that copilot.lua keeps updated
+	local ok, api = pcall(require, "copilot.api") -- or require("copilot.status")
+	if not ok then
+		return icons.offline
 	end
+	local data = api.status.data -- { status = "...", message = "..." }
+
+	-- 3. Map LSP status ➜ your glyphs
+	if data.status == "InProgress" then -- actively fetching
+		return icons.loading .. (data.message or "")
+	elseif data.status == "Normal" or data.status == "" then
+		return icons.idle .. (data.message or "")
+	elseif data.status == "Warning" or data.status == "Error" then
+		return icons.warn .. (data.message or "")
+	else
+		return icons.offline
+	end
+	-- -- local ok, copilot_status = pcall(require, "copilot_status")
+	-- -- if not ok then
+	-- -- 	return "Copilot Status not available"
+	-- -- end
+	-- -- return copilot_status.status_string()
+	-- local agent = vim.g.loaded_copilot == 1 and vim.fn["copilot#RunningClient"]() or nil
+	-- if agent == nil then
+	-- 	return icons.offline
+	-- end
+	-- -- most of the time, requests is just empty dict.
+	-- if type(agent) == "table" then
+	-- 	local requests = agent.requests or {}
+	--
+	-- 	-- requests is dict with number as index, get status from those requests.
+	-- 	for _, req in pairs(requests) do
+	-- 		local req_status = req.status
+	-- 		if req_status == "running" then
+	-- 			return icons.idle
+	-- 		end
+	-- 	end
+	-- 	return icons.loading
+	-- end
 end
 return M

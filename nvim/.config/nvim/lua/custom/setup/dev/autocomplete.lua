@@ -15,8 +15,6 @@ local setup_blink = function()
 	blink.setup({
 		keymap = {
 			preset = "enter",
-			["K"] = { "show_documentation" },
-			["q"] = { "hide_documentation" },
 		},
 		sources = {
 			default = { "lsp", "path", "buffer", "copilot", "snippets" },

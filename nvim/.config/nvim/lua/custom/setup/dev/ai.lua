@@ -127,12 +127,9 @@ M.copilot_status = function()
 		return icons.offline
 	end
 
-	-- 2. Grab the status table that copilot.lua keeps updated
-	local ok, api = pcall(require, "copilot.api") -- or require("copilot.status")
-	if not ok then
-		return icons.offline
-	end
-	local data = api.status.data -- { status = "...", message = "..." }
+	local status = require("copilot.status")
+
+	local data = status.data
 
 	-- 3. Map LSP status ➜ your glyphs
 	if data.status == "InProgress" then -- actively fetching

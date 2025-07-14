@@ -15,7 +15,6 @@ local lsps = {
 	-- "pylsp",
 	"ruff",
 	"rust_analyzer",
-	"sqlls",
 	"terraformls",
 	"tflint",
 	"ts_ls",
@@ -153,6 +152,7 @@ local tools = {
 	{ name = "buf", capabilities = { "formatting", "diagnostics" } },
 	{ name = "goimports", capabilities = { "formatting" } },
 	{ name = "actionlint", capabilities = { "diagnostics" } },
+	{ name = "sqlfluff", capabilities = { "formatting", "diagnostics" } },
 }
 
 local setup_non_lsp_sources = function()
@@ -185,6 +185,34 @@ local setup_tiny_codeaction = function()
 		backend = "delta",
 		picker = "snacks",
 	})
+	local finder = require("tiny-code-action.finder")
+	local weight = { pyright = 0, ruff = 1 }
+
+	finder.sort_by_preferred = function(results)
+		if not results or #results == 0 then
+			return results
+		end
+		table.sort(results, function(a, b)
+			-- 1. client priority (pyright < ruff < everything else)
+			-- 2. preferred flag coming from LSP
+			-- 3. alphabetical order of the action title
+			local wa = weight[a.client.name] or 99
+			local wb = weight[b.client.name] or 99
+			if wa ~= wb then
+				return wa < wb
+			end
+
+			-- 2. “preferred” flag inside the CodeAction itself
+			local pa = a.action and a.action.isPreferred or false
+			local pb = b.action and b.action.isPreferred or false
+			if pa ~= pb then
+				return pa
+			end
+
+			return (a.action.title or "") < (b.action.title or "")
+		end)
+		return results
+	end
 end
 --- @class LSP
 local M = {}

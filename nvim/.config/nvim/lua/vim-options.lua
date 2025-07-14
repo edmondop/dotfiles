@@ -1,6 +1,7 @@
 vim.wo.number = true
 
 local set = vim.opt
+set.undofile = true
 set.swapfile = false
 set.tabstop = 2
 set.shiftwidth = 4
@@ -19,3 +20,9 @@ set.conceallevel = 1
 
 -- Relative numbers useful to move up and down
 set.relativenumber = true
+
+vim.filetype.add({
+	extension = {
+		ql = "sql",
+	},
+})

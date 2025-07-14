@@ -93,9 +93,9 @@ vim.api.nvim_create_autocmd({ "User" }, {
 	end,
 })
 
-function setup_copilot()
+local function setup_copilot()
 	require("copilot").setup({
-		suggestions = { enabled = true, auto_trigger = true },
+		suggestion = { enabled = false },
 		filetypes = {
 			yaml = true,
 		},

@@ -1,6 +1,11 @@
 local setup_codecompanion = function()
 	-- require("vectorcode").setup({})
 	require("codecompanion").setup({
+		display = {
+			diff = {
+				provider = "minidiff",
+			},
+		},
 		strategies = {
 			chat = {
 				adapter = {
@@ -95,7 +100,8 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
 local function setup_copilot()
 	require("copilot").setup({
-		suggestion = { enabled = false },
+		suggestion = { enabled = true, auto_trigger = true, keymap = { accept = "<TAB>" } },
+		copilot_model = "claude-sonnet-4",
 		filetypes = {
 			yaml = true,
 		},
@@ -107,9 +113,7 @@ end
 --- @class AI
 local M = {}
 M.setup = function(opts)
-	setup_copilot({
-		copilot_model = "claude-sonnet-4",
-	})
+	setup_copilot()
 	setup_codecompanion()
 end
 M.codecompanion_status = function()

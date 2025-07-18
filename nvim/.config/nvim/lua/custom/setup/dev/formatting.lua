@@ -18,11 +18,12 @@ local setup_conform = function()
 			typescriptreact = { "prettier" },
 			yaml = { "prettier" },
 		},
-		format_on_save = {
-			lsp_fallback = true,
-			async = false,
-			timeout_ms = 1000,
-		},
+		format_on_save = function(bufnr)
+			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+				return
+			end
+			return { timeout_ms = 500, lsp_format = "fallback" }
+		end,
 	})
 
 	vim.keymap.set({ "n", "v" }, "<leader>cf", function()

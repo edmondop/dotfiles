@@ -16,4 +16,5 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 	},
+	{ "echasnovski/mini.diff", version = "*" },
 }

@@ -12,6 +12,21 @@ local setup_codecompanion = function()
 					name = "copilot",
 					model = "claude-sonnet-4",
 				},
+				keymaps = {
+					close = {
+						modes = {},
+					},
+					toggle = {
+						modes = {
+							n = "<C-c>",
+							i = "<C-c>",
+						},
+						callback = function()
+							vim.cmd("CodeCompanionChat Toggle")
+						end,
+						description = "Toggle Chat",
+					},
+				},
 			},
 			inline = {
 				adapter = {

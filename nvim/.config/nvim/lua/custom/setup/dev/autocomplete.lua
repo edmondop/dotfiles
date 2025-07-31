@@ -20,7 +20,7 @@ local setup_blink = function()
 			preset = "enter",
 		},
 		sources = {
-			default = { "lsp", "copilot", "path", "buffer", "luasnip", "snippets" },
+			default = { "lsp", "copilot", "path", "buffer", "snippets" },
 			providers = {
 				copilot = {
 					name = "copilot",

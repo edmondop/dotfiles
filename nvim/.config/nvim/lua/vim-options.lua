@@ -28,7 +28,7 @@ vim.filetype.add({
 })
 
 -- Required to run Pyright at scale
-vim.env.NODE_OPTIONS = "--max-old-space-size=8192"
+vim.env.NODE_OPTIONS = "--max-old-space-size=16384"
 
 vim.opt.exrc = true -- Enable loading of .nvimrc / .nvim.lua files
 vim.opt.secure = true -- Restrict usage of some commands in .nvimrc files or .nvim.lua files

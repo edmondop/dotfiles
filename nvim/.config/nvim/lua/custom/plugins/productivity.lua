@@ -17,4 +17,12 @@ return {
 		"akinsho/toggleterm.nvim",
 	},
 	{ "echasnovski/mini.diff", version = "*" },
+	{
+		"stevearc/quicker.nvim",
+		event = "FileType qf",
+		opts = {},
+	},
+	{
+		"r0nsha/qfpreview.nvim",
+	},
 }

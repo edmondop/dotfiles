@@ -20,7 +20,7 @@ local setup_blink = function()
 			preset = "enter",
 		},
 		sources = {
-			default = { "lsp", "copilot", "path", "buffer", "snippets" },
+			default = { "lsp", "path", "buffer", "snippets", "copilot" },
 			providers = {
 				copilot = {
 					name = "copilot",
@@ -35,6 +35,7 @@ local setup_blink = function()
 		completion = {
 			documentation = { auto_show = true, auto_show_delay_ms = 300 },
 		},
+		signature = { enabled = true },
 	})
 end
 local setup_cmd_sql = function()

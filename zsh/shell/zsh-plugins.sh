@@ -13,6 +13,7 @@ zinit light joshskidmore/zsh-fzf-history-search
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit snippet OMZP::web-search
 #
 # History
 HISTSIZE=5000

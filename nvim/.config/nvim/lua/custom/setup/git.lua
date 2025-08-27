@@ -90,7 +90,7 @@ M.setup = function()
 			setup_hunks_staging_keymaps(bufnr)
 			setup_diff_keymaps(bufnr)
 			-- Others
-			map(bufnr, "n", "<leader>Gb", function()
+			map(bufnr, "n", "<leader>Gl", function()
 				gitsigns.blame_line({ full = true })
 			end, { desc = "Blame Line" })
 			map(bufnr, "n", "<leader>Gtb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })

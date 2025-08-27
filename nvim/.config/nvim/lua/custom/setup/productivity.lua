@@ -62,6 +62,7 @@ local setup_which_key = function()
 	local wk = require("which-key")
 	wk.setup({})
 	wk.add({
+		{ "<leader>a", group = "AI / Codecompanion" },
 		{ "<leader>B", group = "Backup" },
 		{ "<leader>c", group = "Code" },
 		{ "<leader>d", group = "Debug" },

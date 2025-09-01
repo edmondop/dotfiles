@@ -34,59 +34,47 @@ local setup_lsp_keymaps = function()
 			local bufnr = args.buf
 			local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
 
-			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+			vim.keymap.set("n", "gd", function()
+				Snacks.picker.lsp_definitions()
+			end, { desc = "LSP - Go to Definition", buffer = bufnr })
 
-			vim.keymap.set("n", "<leader>ca", function()
+			vim.keymap.set("n", "gD", function()
+				Snacks.picker.lsp_declarations()
+			end, { desc = "LSP - Go to Declaration", buffer = bufnr })
+
+			vim.keymap.set("n", "gy", function()
+				Snacks.picker.lsp_type_definitions()
+			end, { desc = "LSP - Go to Type Definition", buffer = bufnr })
+
+			vim.keymap.set("n", "gs", function()
+				Snacks.picker.lsp_workspace_symbols()
+			end, { desc = "LSP - Workspace Symbols", buffer = bufnr })
+
+			-- Overrides preferring Snacks picker
+			vim.keymap.set("n", "grr", function()
+				Snacks.picker.lsp_references()
+			end, { desc = "References", buffer = bufnr })
+
+			vim.keymap.set("n", "gri", function()
+				Snacks.picker.lsp_implementations()
+			end, { desc = "Implementations", buffer = bufnr })
+
+			vim.keymap.set("n", "gO", function()
+				Snacks.picker.lsp_symbols()
+			end, { desc = "Document Symbols", buffer = bufnr })
+
+			-- Override code action to use tiny-code-action
+			vim.keymap.set("n", "gra", function()
 				require("tiny-code-action").code_action()
-			end, { desc = "LSP - Code Action", buffer = bufnr })
+			end, { desc = "Code Action", buffer = bufnr })
 
-			vim.keymap.set("v", "<leader>ca", function()
+			vim.keymap.set("v", "gra", function()
 				if vim.lsp.buf.range_code_action then
 					vim.lsp.buf.range_code_action()
 				else
 					vim.lsp.buf.code_action()
 				end
-			end, { desc = "LSP - Range Code Action", buffer = bufnr })
-			-- Productivity
-			vim.keymap.set(
-				"n",
-				"<leader>cs",
-				vim.lsp.buf.signature_help,
-				{ desc = "LSP - Signature help", buffer = bufnr }
-			)
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP - Hover documentation" })
-
-			vim.keymap.set("n", "<leader>cd", function()
-				Snacks.picker.lsp_definitions()
-			end, { desc = "LSP - Go to definitions", buffer = bufnr })
-
-			vim.keymap.set("n", "<leader>cD", function()
-				Snacks.picker.lsp_declarations()
-			end, { desc = "LSP - Go to declarations", buffer = bufnr })
-
-			vim.keymap.set("n", "<leader>ci", function()
-				Snacks.picker.lsp_implementations()
-			end, { desc = "LSP - Go to implementations", buffer = bufnr })
-
-			vim.keymap.set("n", "<leader>ct", function()
-				Snacks.picker.lsp_type_definitions()
-			end, { desc = "LSP - Go to type definition", buffer = bufnr })
-
-			vim.keymap.set("n", "<leader>cr", function()
-				vim.lsp.buf.rename()
-			end, { desc = "LSP - Rename Symbol", buffer = bufnr })
-
-			vim.keymap.set("n", "<leader>cR", function()
-				Snacks.picker.lsp_references()
-			end, { desc = "LSP - Go to reference", buffer = bufnr })
-
-			vim.keymap.set("n", "<leader>cS", function()
-				Snacks.picker.lsp_symbols()
-			end, { desc = "LSP Symbols", buffer = bufnr })
-
-			vim.keymap.set("n", "<leader>cW", function()
-				Snacks.picker.lsp_workspace_symbols()
-			end, { desc = "LSP Workspace Symbols", buffer = bufnr })
+			end, { desc = "Code Action", buffer = bufnr })
 
 			local filetype = vim.bo[bufnr].filetype
 			if disable_semantic_tokens[filetype] then

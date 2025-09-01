@@ -14,6 +14,11 @@ local setup_folding = function(opts)
 			vim.lsp.buf.hover()
 		end
 	end, { desc = "Peek Fold" })
+	opts = vim.tbl_deep_extend("force", {
+		provider_selector = function(bufnr, filetype, buftype)
+			return { "treesitter", "indent" }
+		end,
+	}, opts)
 	ufo.setup(opts)
 end
 

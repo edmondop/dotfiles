@@ -12,16 +12,28 @@ fd() {
 }
 
 fsb() {
-    local pattern=$*
+    local pattern=${1:-""}
     local branches branch
-    branches=$(git branch --all | awk 'tolower($0) ~ /'"$pattern"'/') &&
-        branch=$(echo "$branches" |
-            fzf-tmux -p --reverse -1 -0 +m) &&
-        if [ "$branch" = "" ]; then
-            echo "[$0] No branch matches the provided pattern"
-            return
-        fi
-    git checkout "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
+
+    if [ -n "$pattern" ]; then
+        branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)' |
+            awk 'tolower($0) ~ /'"$pattern"'/')
+    else
+        branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)')
+    fi
+
+    branch=$(echo "$branches" |
+        fzf-tmux -p --reverse -1 -0 +m \
+            --preview 'git log --oneline --graph --date=short --color=always -10 {}' \
+            --preview-window=right:60% \
+            --header "Recent branches - Enter to checkout")
+
+    if [ -n "$branch" ]; then
+        git checkout "$branch"
+    else
+        echo "[$0] No branch selected"
+        return
+    fi
 }
 
 fshow() {

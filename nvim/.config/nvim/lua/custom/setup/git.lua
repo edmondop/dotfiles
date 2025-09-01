@@ -43,6 +43,16 @@ end
 
 local setup_diff_keymaps = function(bufnr)
 	map(bufnr, "n", "<leader>Gd", gitsigns.diffthis, { desc = "Diff This (vs staging)" })
+	map(bufnr, "n", "<leader>Gb", function()
+		Snacks.picker.git_branches(function(branch)
+			if branch then
+				gitsigns.diffthis(branch)
+			end
+		end)
+	end, { desc = "Diff This (vs picked branch)" })
+	map(bufnr, "n", "<leader>GM", function()
+		gitsigns.diffthis("~")
+	end, { desc = "Diff This (vs master)" })
 	map(bufnr, "n", "<leader>GD", function()
 		gitsigns.diffthis("~")
 	end, { desc = "Diff This (vs last commit)" })
@@ -80,7 +90,7 @@ M.setup = function()
 			setup_hunks_staging_keymaps(bufnr)
 			setup_diff_keymaps(bufnr)
 			-- Others
-			map(bufnr, "n", "<leader>Gb", function()
+			map(bufnr, "n", "<leader>Gl", function()
 				gitsigns.blame_line({ full = true })
 			end, { desc = "Blame Line" })
 			map(bufnr, "n", "<leader>Gtb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })

@@ -1,6 +1,9 @@
 local setup_codecompanion = function()
 	-- require("vectorcode").setup({})
 	require("codecompanion").setup({
+		opts = {
+			log_level = "TRACE",
+		},
 		display = {
 			diff = {
 				provider = "minidiff",
@@ -45,12 +48,12 @@ local setup_codecompanion = function()
 					expiration_days = 0,
 					picker = "snacks", --- ("telescope", "snacks", "fzf-lua", or "default")
 					auto_generate_title = true,
-					title_generation_opts = {
-						---Adapter for generating titles (defaults to current chat adapter)
-						adapter = "copilot", -- "copilot"
-						---Model for generating titles (defaults to current chat model)
-						model = nil, -- "gpt-4o"
-					},
+					-- title_generation_opts = {
+					-- 	---Adapter for generating titles (defaults to current chat adapter)
+					-- 	adapter = "copilot", -- "copilot"
+					-- 	---Model for generating titles (defaults to current chat model)
+					-- 	model = nil, -- "gpt-4o"
+					-- },
 					---On exiting and entering neovim, loads the last chat on opening chat
 					continue_last_chat = false,
 					---When chat is cleared with `gx` delete the chat from history
@@ -62,6 +65,16 @@ local setup_codecompanion = function()
 			},
 		},
 	})
+
+	vim.keymap.set("n", "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code Companion Chat" })
+	vim.keymap.set(
+		"n",
+		"<leader>aa",
+		"<cmd>CodeCompanionChat Add<cr>",
+		{ desc = "Code Companion - Add file to the current chat" }
+	)
+	vim.keymap.set("n", "<leader>ah", "<cmd>CodeCompanionChatHistory<cr>", { desc = "Code Companion History" })
+	vim.cmd([[cab cc CodeCompanion]])
 end
 
 local spinner_symbols = {

@@ -62,6 +62,7 @@ local setup_which_key = function()
 	local wk = require("which-key")
 	wk.setup({})
 	wk.add({
+		{ "<leader>a", group = "AI / Codecompanion" },
 		{ "<leader>B", group = "Backup" },
 		{ "<leader>c", group = "Code" },
 		{ "<leader>d", group = "Debug" },
@@ -103,6 +104,40 @@ local setup_task_warrior = function()
 	vim.api.nvim_set_keymap("n", "<leader>Tw", "<CMD>TaskWarriorList<CR>", { desc = "Task Warrior Task List" })
 end
 
+local setup_quicker = function()
+	vim.keymap.set("n", "<leader>q", function()
+		require("quicker").toggle()
+	end, {
+		desc = "Toggle quickfix",
+	})
+	vim.keymap.set("n", "<leader>l", function()
+		require("quicker").toggle({ loclist = true })
+	end, {
+		desc = "Toggle loclist",
+	})
+	require("quicker").setup({
+		keys = {
+			{
+				">",
+				function()
+					require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
+				end,
+				desc = "Expand quickfix context",
+			},
+			{
+				"<",
+				function()
+					require("quicker").collapse()
+				end,
+				desc = "Collapse quickfix context",
+			},
+		},
+	})
+end
+local setup_quickfix_productivity = function()
+	require("qfpreview").setup({})
+end
+
 --- @class Productivity
 local M = {}
 M.setup = function(opts)
@@ -117,6 +152,8 @@ M.setup = function(opts)
 	setup_lua_live_evaluation()
 	setup_navigation_keymaps()
 	setup_resize_keymaps()
+	setup_quicker()
+	setup_quickfix_productivity()
 	setup_split_keymaps()
 	setup_tabs_keymaps()
 	setup_task_warrior()

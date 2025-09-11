@@ -73,7 +73,7 @@ local setup_codecompanion = function()
 		"<cmd>CodeCompanionChat Add<cr>",
 		{ desc = "Code Companion - Add file to the current chat" }
 	)
-	vim.keymap.set("n", "<leader>ah", "<cmd>CodeCompanionChatHistory<cr>", { desc = "Code Companion History" })
+	vim.keymap.set("n", "<leader>ah", "<cmd>CodeCompanionHistory<cr>", { desc = "Code Companion History" })
 	vim.cmd([[cab cc CodeCompanion]])
 end
 

@@ -80,8 +80,11 @@ end
 
 local setup_diagnostics_pickers = function()
 	vim.keymap.set("n", "<leader>fd", function()
+		Snacks.picker.diagnostics_buffer()
+	end, { desc = "Diagnostics (Buffer)" })
+	vim.keymap.set("n", "<leader>fD", function()
 		Snacks.picker.diagnostics()
-	end, { desc = "Diagnostics" })
+	end, { desc = "Diagnostics (All)" })
 end
 
 local M = {}

@@ -38,14 +38,17 @@ hooks.location=~/.config/task/hooks
 #include solarized-dark-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
+#
 
-context.learning.read=+learning
-context.learning.write=+learning
-context.capone.read=+capone
-context.capone.write=+capone
-urgency.tags.coefficient=0.0
-urgency.uda.priority.L.coefficient=-1.0
-context.databases=+databases
-context.interviewing.read=+databases or +interviewing
-context.interviewing.write=+interviewing
-context=interviewing
+uda.priority.values=H,M,L,VL
+urgency.uda.priority.VL.coefficient=-10.0
+
+report.focus.description=Active tasks only (no VL priority, no blocked)
+report.focus.columns=id,start.age,entry.age,depends,priority,project,tag,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.focus.filter=status:pending priority.not:VL status.not:waiting
+report.focus.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.focus.sort=urgency-
+
+alias.f=focus
+
+

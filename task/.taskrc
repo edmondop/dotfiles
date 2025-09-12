@@ -1,0 +1,60 @@
+# [Created by task 2.6.2 1/3/2025 17:48:01]
+# Taskwarrior program configuration file.
+# For more documentation, see https://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# You can also refence environment variables:
+#   variable=$HOME/task
+#   variable=$VALUE
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+# data.location=/home/edmondo/.task
+
+# To use the default location of the XDG directories,
+# move this configuration file from ~/.taskrc to ~/.config/task/taskrc and uncomment below
+
+# data.location=~/.local/share/task
+# hooks.location=~/.config/task/hooks
+
+# Color theme (uncomment one to use)
+#include light-16.theme
+#include light-256.theme
+#include dark-16.theme
+#include dark-256.theme
+#include dark-red-256.theme
+#include dark-green-256.theme
+#include dark-blue-256.theme
+#include dark-violets-256.theme
+#include dark-yellow-green.theme
+#include dark-gray-256.theme
+#include dark-gray-blue-256.theme
+#include solarized-dark-256.theme
+#include solarized-light-256.theme
+#include no-color.theme
+#
+
+uda.priority.values=H,M,L,VL
+urgency.uda.priority.VL.coefficient=-10.0
+
+report.focus.description=Active tasks only (no VL priority, no blocked)
+report.focus.columns=id,start.age,entry.age,depends,priority,project,tags,description.count,urgency
+report.focus.filter=status:pending priority.not:VL status.not:waiting
+report.focus.labels=ID,Active,Age,Deps,P,Project,Tag,Description,Urg
+report.focus.sort=urgency-
+alias.f=focus
+
+
+report.list.sort=urgency-
+
+color.uda.priority.H=color226
+color.uda.priority.M=color255      # White (bright and clean)
+color.uda.priority.L=color245      # Keep current gray
+color.uda.priority.VL=color240     # More subtle gray
+

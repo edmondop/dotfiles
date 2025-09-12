@@ -138,6 +138,9 @@ local setup_quickfix_productivity = function()
 	require("qfpreview").setup({})
 end
 
+local setup_minidiff = function()
+	require("mini.diff").setup()
+end
 --- @class Productivity
 local M = {}
 M.setup = function(opts)
@@ -150,6 +153,7 @@ M.setup = function(opts)
 	setup_enhanced_terminal()
 	setup_harpoon()
 	setup_lua_live_evaluation()
+	setup_minidiff()
 	setup_navigation_keymaps()
 	setup_resize_keymaps()
 	setup_quicker()

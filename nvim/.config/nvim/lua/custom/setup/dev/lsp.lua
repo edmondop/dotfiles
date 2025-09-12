@@ -4,7 +4,7 @@ local lsps = {
 	-- "bacon",
 	-- "bacon_ls",
 	"bzl",
-	"basedpyright",
+	-- "basedpyright",
 	"cucumber_language_server",
 	"graphql",
 	"gopls",
@@ -13,6 +13,7 @@ local lsps = {
 	"lua_ls",
 	-- "nil_ls", -- This will be conditionally added
 	-- "pylsp",
+	-- "pyrefly",
 	"ruff",
 	"rust_analyzer",
 	"terraformls",
@@ -87,7 +88,7 @@ end
 local setup_lsp_capabilities = function()
 	require("mason").setup({})
 	require("mason-lspconfig").setup({
-		automatic_installation = true,
+		-- automatic_installation = true,
 		ensure_installed = lsps,
 	})
 	vim.lsp.config["basedpyright"] = {

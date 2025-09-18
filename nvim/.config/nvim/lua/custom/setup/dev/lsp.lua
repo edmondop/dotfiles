@@ -4,7 +4,7 @@ local lsps = {
 	-- "bacon",
 	-- "bacon_ls",
 	"bzl",
-	-- "basedpyright",
+	"basedpyright",
 	"cucumber_language_server",
 	"graphql",
 	"gopls",
@@ -93,6 +93,15 @@ local setup_lsp_capabilities = function()
 	})
 	vim.lsp.config["basedpyright"] = {
 		root_markers = { "pyrightconfig.json", "setup.py", ".git" },
+		settings = {
+			basedpyright = {
+				analysis = {
+					diagnosticMode = "workspace",
+					autoSearchPaths = true,
+					useLibraryCodeForTypes = true,
+				},
+			},
+		},
 	}
 	-- vim.lsp.config["pylsp"] = {
 	-- 	root_markers = { "pyproject.toml", "setup.py", ".git" },

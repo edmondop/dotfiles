@@ -32,5 +32,6 @@ update_socket_symlink() {
 }
 
 if [[ "$(uname -s)" == "Linux" && "$(lsb_release -is 2>/dev/null)" == "Ubuntu" && "$(hostname)" == "devrestricted-eporcu" ]]; then
+    echo "Updating Socket symlink for Ubuntu on devrestricted-eporcu"
     update_socket_symlink
 fi

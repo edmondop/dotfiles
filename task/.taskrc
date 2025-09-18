@@ -58,3 +58,4 @@ color.uda.priority.M=color255      # White (bright and clean)
 color.uda.priority.L=color245      # Keep current gray
 color.uda.priority.VL=color240     # More subtle gray
 
+news.version=3.4.1

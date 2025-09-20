@@ -15,6 +15,7 @@ return {
 		},
 		build = "PympleBuild",
 	},
+	{ "edmondop/cedar.nvim" },
 	{ "nvim-java/nvim-java" },
 	{
 		"PedramNavid/dbtpal",

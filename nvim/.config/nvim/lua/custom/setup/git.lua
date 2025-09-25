@@ -84,6 +84,12 @@ local M = {}
 ---@class Git
 M.setup = function()
 	require("gitsigns").setup({
+		watch_gitdir = {
+			enable = false, -- Don't watch git directory for changes
+		},
+		attach_to_untracked = false,
+		current_line_blame = false, -- Disable automatic blame
+		update_debounce = 999999, -- Essentially never auto-update
 		on_attach = function(bufnr)
 			-- Navigation
 			setup_hunks_navigation_keymaps(bufnr)
